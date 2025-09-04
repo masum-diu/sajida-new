@@ -49,16 +49,16 @@ function AboutHeroSection({
           dangerouslySetInnerHTML={{ __html: subtitle1 }}
         />
 
-       <Typography
-  sx={{
-    fontSize: 16,
-    color: "#AAAAAA",
-    textAlign: "justify",
-    mt: 4,
-  }}
-  dangerouslySetInnerHTML={{ __html: description }}
-/>
-
+        <Typography
+          sx={{
+            fontSize: 16,
+            color: "#AAAAAA",
+            textAlign: "justify",
+            mt: 4,
+          }}
+        >
+          {description}
+        </Typography>
 
         <Stack mt={4} spacing={4} direction={{ xs: "column", md: "row" }}>
           <Stack direction={"column"}>
@@ -74,9 +74,8 @@ function AboutHeroSection({
                 color: "#AAAAAA",
                 textAlign: "justify",
               }}
-            >
-              {des1}
-            </Typography>
+              dangerouslySetInnerHTML={{ __html: des1 }}
+            />
           </Stack>
 
           {/* another one */}
@@ -94,9 +93,8 @@ function AboutHeroSection({
                 textAlign: "justify",
                 mt: 2,
               }}
-            >
-              {des2}
-            </Typography>
+              dangerouslySetInnerHTML={{ __html: des2 }}
+            />
           </Stack>
         </Stack>
 
