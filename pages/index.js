@@ -1,0 +1,473 @@
+import React, { useEffect, useState } from "react";
+import { Box, Paper, Stack, Typography, Grid, Button } from "@mui/material";
+import SwiperCard from "./components/SwiperCard";
+import ConteactItemCard from "./components/ConteactItemCard";
+import AboutHeroSection from "./components/AboutHeroSection";
+import { useRouter } from "next/router";
+import MedicationOutlinedIcon from "@mui/icons-material/MedicationOutlined";
+import MedicalInformationOutlinedIcon from "@mui/icons-material/MedicalInformationOutlined";
+import BiotechOutlinedIcon from "@mui/icons-material/BiotechOutlined";
+import AirlineSeatFlatAngledOutlinedIcon from "@mui/icons-material/AirlineSeatFlatAngledOutlined";
+import AccessibilityNewOutlinedIcon from "@mui/icons-material/AccessibilityNewOutlined";
+import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
+import LocalHospitalOutlinedIcon from "@mui/icons-material/LocalHospitalOutlined";
+import HealthAndSafetyOutlinedIcon from "@mui/icons-material/HealthAndSafetyOutlined";
+import VaccinesOutlinedIcon from "@mui/icons-material/VaccinesOutlined";
+import BloodtypeOutlinedIcon from "@mui/icons-material/BloodtypeOutlined";
+import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
+import MedicalServicesOutlinedIcon from "@mui/icons-material/MedicalServicesOutlined";
+import ServiceCards from "./components/ServiceCards";
+import Bodypart from "./components/Bodypart";
+import Dep_Doctor_bodyparts from "./components/Dep_Doctor_bodyparts";
+import { Article } from "@mui/icons-material";
+import Articles from "./components/Articles";
+import Testimony from "./components/Testimony";
+import { BeatLoader } from 'react-spinners'
+import dynamic from "next/dynamic";
+import instance from "./api/api_instance";
+const FaqCom = dynamic(() => import("../pages/components/FaqCom"), {
+  ssr: false,
+});
+function Home() {
+  const router = useRouter();
+const [data, setData] = useState([]);
+ const [loading, setLoading] = useState(false);
+
+   const fetchData = async () => {
+        try {
+            setLoading(true);
+            const response = await instance.get("/pages/131");
+            setData(response.data.body);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return (
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                    flexDirection: "column",
+                }}
+            >
+                <BeatLoader color="#191919" size={30} />
+            </Box>
+        );
+    }
+
+  const test = [
+    {
+      image: "/assets/testimony/test.svg",
+      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
+      btn: "Details",
+      name: "Shima Jaman",
+      age: 35,
+      qut: "/assets/testimony/qutation.svg",
+    },
+    {
+      image: "/assets/testimony/test.svg",
+      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
+      btn: "Details",
+      name: "Shima Jaman",
+      age: 35,
+      qut: "/assets/testimony/qutation.svg",
+    },
+    {
+      image: "/assets/testimony/test.svg",
+      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
+      btn: "Details",
+      name: "Shima Jaman",
+      age: 35,
+      qut: "/assets/testimony/qutation.svg",
+    },
+    {
+      image: "/assets/testimony/test.svg",
+      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
+      btn: "Details",
+      name: "Shima Jaman",
+      age: 35,
+      qut: "/assets/testimony/qutation.svg",
+    },
+    {
+      image: "/assets/testimony/test.svg",
+      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
+      btn: "Details",
+      name: "Shima Jaman",
+      age: 35,
+      qut: "/assets/testimony/qutation.svg",
+    },
+    {
+      image: "/assets/testimony/test.svg",
+      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
+      btn: "Details",
+      name: "Shima Jaman",
+      age: 35,
+      qut: "/assets/testimony/qutation.svg",
+    },
+  ];
+
+  const events = [
+    {
+      title:
+        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
+      date: "Aug-10-2024",
+      image: "/assets/article/new.jpeg",
+    },
+    {
+      title:
+        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
+      date: "Aug-10-2024",
+      image: "/assets/article/new.jpeg",
+    },
+    {
+      title:
+        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
+      date: "Aug-10-2024",
+      image: "/assets/article/new.jpeg",
+    },
+    {
+      title:
+        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
+      date: "Aug-10-2024",
+      image: "/assets/article/new.jpeg",
+    },
+    {
+      title:
+        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
+      date: "Aug-10-2024",
+      image: "/assets/article/new.jpeg",
+    },
+    {
+      title:
+        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
+      date: "Aug-10-2024",
+      image: "/assets/article/new.jpeg",
+    },
+  ];
+
+  const serviceCard = [
+    {
+      iconItem: MedicationOutlinedIcon,
+      title: "Pharmacy Service",
+      des: "Prescription and OTC medicines provided with professional guidance.",
+      btn: "Learn More",
+      slug: "pharmacy-service",
+    },
+    {
+      iconItem: MedicalInformationOutlinedIcon,
+      title: "Medical Specialist",
+      des: "Connect with expert doctors across all major specializations.",
+      btn: "Learn More",
+      slug: "medical-specialist",
+    },
+    {
+      iconItem: BiotechOutlinedIcon,
+      title: "Diagnostic Services",
+      des: "Lab and imaging tests for accurate medical diagnosis.",
+      btn: "Learn More",
+      slug: "diagnostic-services",
+    },
+    {
+      iconItem: AirlineSeatFlatAngledOutlinedIcon,
+      title: "General Surgery",
+      des: "Expert surgical procedures with compassionate post-op care.",
+      btn: "Learn More",
+      slug: "general-surgery",
+    },
+    {
+      iconItem: AccessibilityNewOutlinedIcon,
+      title: "Orthopedic",
+      des: "Bone and joint care including sports injuries and arthritis.",
+      btn: "Learn More",
+      slug: "orthopedic",
+    },
+    {
+      iconItem: ChildCareOutlinedIcon,
+      title: "Mother and Child Care",
+      des: "Maternity, neonatal, and pediatric care under one roof.",
+      btn: "Learn More",
+      slug: "mother-child-care",
+    },
+    {
+      iconItem: LocalHospitalOutlinedIcon,
+      title: "Hospital Services",
+      des: "24/7 emergency, inpatient, and surgical hospital support.",
+      btn: "Learn More",
+      slug: "hospital-services",
+    },
+    {
+      iconItem: HealthAndSafetyOutlinedIcon,
+      title: "Health and Safety",
+      des: "Wellness checkups and workplace safety consultations.",
+      btn: "Learn More",
+      slug: "health-safety",
+    },
+    {
+      iconItem: VaccinesOutlinedIcon,
+      title: "Vaccination",
+      des: "Routine and travel vaccines for all age groups.",
+      btn: "Learn More",
+      slug: "vaccination",
+    },
+    {
+      iconItem: BloodtypeOutlinedIcon,
+      title: "Blood Services",
+      des: "Safe blood donation, screening, and transfusion support.",
+      btn: "Learn More",
+      slug: "blood-services",
+    },
+    {
+      iconItem: PsychologyOutlinedIcon,
+      title: "Mental Health",
+      des: "Confidential therapy, counseling, and mental wellness care.",
+      btn: "Learn More",
+      slug: "mental-health",
+    },
+    {
+      iconItem: MedicalServicesOutlinedIcon,
+      title: "General Checkup",
+      des: "Routine health screening for disease prevention and wellness.",
+      btn: "Learn More",
+      slug: "general-checkup",
+    },
+  ];
+  return (
+    <>
+      <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
+        <SwiperCard data={data} />
+      </Box>
+      <Box
+        bgcolor={"#2A6498"}
+        sx={{
+          // height: { md: 181 },
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Grid
+          container
+          spacing={4}
+          justifyContent={"space-between"}
+          py={4}
+          alignItems={"center"}
+          sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto" }}
+        >
+          <Grid size={{ md: 4, xs: 12 }}>
+            <ConteactItemCard
+              image={"/assets/Home/ExpertIcon.svg"}
+              title={"Expert Doctors"}
+              description={"Lorem ipsum dolor sit amet,consectetur adipiscing."}
+            />
+          </Grid>
+          <Grid size={{ md: 4, xs: 12 }}>
+            <ConteactItemCard
+              image={"/assets/Home/EmergencyIcon.svg"}
+              title={"Emergency Care"}
+              description={"Lorem ipsum dolor sit amet,consectetur adipiscing."}
+            />
+          </Grid>
+          <Grid size={{ md: 4, xs: 12 }}>
+            <ConteactItemCard
+              image={"/assets/Home/SupportIcon.svg"}
+              title={"24/7 Full Support"}
+              description={"Lorem ipsum dolor sit amet,consectetur adipiscing."}
+            />
+          </Grid>
+        </Grid>
+      </Box>
+      <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
+        <AboutHeroSection
+          image1={"/assets/about/aboutImg1.svg"}
+          image2={"/assets/about/aboutImg2.svg"}
+          title1={"ABOUT SAJIDA"}
+          title2={"HOSPITAL"}
+          subtitle1={" We Collaborate for Better"}
+          subtitle2={"Healthcare"}
+          description={
+            "Contrary to popular belief, Lorem Ipsum is not simply random text.It has roots in a piece of classical Latin literature from 45 BC,making it over 2000 years old. Richard McClintock, a Latin professorat Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur"
+          }
+          image3={"/assets/about/mission.svg"}
+          title3={"Our Mission"}
+          des1={
+            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour"
+          }
+          image4={"/assets/about/vision.svg"}
+          title4={"Our Vision"}
+          des2={
+            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour"
+          }
+          button1={"Learn More"}
+          disable={router?.pathname}
+        />
+      </Box>
+      <Box
+        sx={{
+          backgroundImage: "url('/assets/about/homesevice.svg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          // height: "100vh",
+          // width: "90%", maxWidth: "1500px", margin: "0 auto",
+          border: "1px solid #EAF0F5",
+        }}
+      >
+        <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto" }}>
+          <Grid container spacing={2} py={6}>
+            {serviceCard.slice(0, 8).map((item, index) => (
+              <Grid size={{ xs: 12, md: 3 }} key={index}>
+                <ServiceCards {...item} slug={item.slug} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Box>
+      <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto" }}>
+        <Grid container spacing={4}>
+          <Grid
+            size={{ xs: 12, md: 7, xl: 8 }}
+            sx={{ order: { xs: 2, md: 0 } }}
+          >
+            <Dep_Doctor_bodyparts />
+          </Grid>
+          <Grid size={{ xs: 12, md: 5, xl: 4 }} mt={{ md: 6, xs: 0 }}>
+            <Stack
+              direction={"row"}
+              alignItems={"flex-end"}
+              justifyContent={"flex-end"}
+              py={{ md: 6, xs: 0 }}
+            >
+              {" "}
+              <Box
+                sx={{
+                  backgroundColor: "#FFFFFF",
+                  px: 3,
+                  py: 1,
+                  borderRadius: 100,
+                }}
+              >
+                <Typography
+                  fontSize={18}
+                  fontWeight={600}
+                  sx={{
+                    background: "linear-gradient(to right, #12A551, #76CB9A)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Select Body Part
+                </Typography>
+              </Box>
+            </Stack>
+
+            <Bodypart />
+          </Grid>
+        </Grid>
+      </Box>
+      <Box
+        sx={{
+          backgroundImage: "url(/assets/homeshowcase.svg)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "100%",
+          height: { xs: "300px", sm: "400px", md: "466px" },
+          mt: 2,
+        }}
+      >
+        <Stack direction="column" spacing={2} sx={{ py: 4, px: 3 }}>
+          <Typography
+            color="#fff"
+            fontWeight="bold"
+            textTransform="uppercase"
+            sx={{
+              fontSize: { xs: 22, sm: 28, md: 40 },
+            }}
+          >
+            Executive Health Check-up
+          </Typography>
+
+          <Typography
+            color="#fff"
+            sx={{
+              fontWeight: 500,
+              fontSize: { xs: 14, sm: 18, md: 26 },
+              maxWidth: { xs: "100%", md: 854 },
+            }}
+          >
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard
+          </Typography>
+
+          <Button
+            variant="contained"
+            sx={{
+              width: { xs: 120, sm: 140, md: 152 },
+              height: { xs: 40, sm: 45, md: 50 },
+              fontWeight: 500,
+              borderRadius: 100,
+              fontSize: { xs: 14, sm: 15, md: 16 },
+              textTransform: "capitalize",
+              p: 1,
+              backgroundColor: "#2A6498",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#2A6498",
+                boxShadow: "none",
+              },
+            }}
+          >
+            Learn More
+          </Button>
+        </Stack>
+      </Box>
+
+      <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 4 }}>
+        <Articles
+          event={events}
+          headingTitle={"Articles and News"}
+          headingSubTitle={"Doctors & Hospital"}
+        />
+      </Box>
+      <Box
+        sx={{
+          backgroundImage: "url('/assets/about/homesevice.svg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          // height: "100vh",
+          // width: "90%", maxWidth: "1500px", margin: "0 auto",
+          border: "1px solid #EAF0F5",
+        }}
+      >
+        <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 4 }}>
+          <Testimony event={test} />
+        </Box>
+      </Box>
+      <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 4 }}>
+        <FaqCom />
+      </Box>
+      <Stack sx={{ width: "100%", mt: 3 }}>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18236.325697473294!2d90.39593963955079!3d23.78058080000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7006f2b3f23%3A0x8e9fb6342f63d08!2sSAJIDA%20Foundation!5e1!3m2!1sen!2sbd!4v1754818171089!5m2!1sen!2sbd"
+          allowfullscreen=""
+          height={400}
+          // style={{ borderRadius: 24 }}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </Stack>
+    </>
+  );
+}
+
+export default Home;
