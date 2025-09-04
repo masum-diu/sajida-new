@@ -272,27 +272,11 @@ function Home() {
                   title={item?.author}
                   description={item?.quote}
                 /> </Grid>))}
-
-          {/* </Grid>
-          <Grid size={{ md: 4, xs: 12 }}>
-            <ConteactItemCard
-              image={"/assets/Home/EmergencyIcon.svg"}
-              title={"Emergency Care"}
-              description={"Lorem ipsum dolor sit amet,consectetur adipiscing."}
-            />
-          </Grid>
-          <Grid size={{ md: 4, xs: 12 }}>
-            <ConteactItemCard
-              image={"/assets/Home/SupportIcon.svg"}
-              title={"24/7 Full Support"}
-              description={"Lorem ipsum dolor sit amet,consectetur adipiscing."}
-            />
-          </Grid> */}
         </Grid>
       </Box>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
         <AboutHeroSection
-          image1={"/assets/about/aboutImg1.svg"}
+          image1={`https://sajedabackend.etherstaging.xyz/${data[3]?.data[0]?._mave?.file_path}`}
           image2={"/assets/about/aboutImg2.svg"}
           title1={"ABOUT SAJIDA"}
           title2={"HOSPITAL"}
