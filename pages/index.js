@@ -30,39 +30,40 @@ const FaqCom = dynamic(() => import("../pages/components/FaqCom"), {
 });
 function Home() {
   const router = useRouter();
-const [data, setData] = useState([]);
- const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  console.log(data)
+  const [loading, setLoading] = useState(false);
 
-   const fetchData = async () => {
-        try {
-            setLoading(true);
-            const response = await instance.get("/pages/131");
-            setData(response.data.body);
-            setLoading(false);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    if (loading) {
-        return (
-            <Box
-                sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: "100vh",
-                    flexDirection: "column",
-                }}
-            >
-                <BeatLoader color="#191919" size={30} />
-            </Box>
-        );
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await instance.get("/pages/131");
+      setData(response.data.body);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          flexDirection: "column",
+        }}
+      >
+        <BeatLoader color="#191919" size={30} />
+      </Box>
+    );
+  }
 
   const test = [
     {
@@ -262,13 +263,17 @@ const [data, setData] = useState([]);
           alignItems={"center"}
           sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto" }}
         >
-          <Grid size={{ md: 4, xs: 12 }}>
-            <ConteactItemCard
-              image={"/assets/Home/ExpertIcon.svg"}
-              title={"Expert Doctors"}
-              description={"Lorem ipsum dolor sit amet,consectetur adipiscing."}
-            />
-          </Grid>
+
+          {data[2]?.data[0]?._mave?.
+            testimonials.map((item, index) => (
+              <Grid size={{ md: 4, xs: 12 }} key={index}>
+                <ConteactItemCard
+                  image={`https://sajedabackend.etherstaging.xyz/${item?.image?.file_path}`}
+                  title={item?.author}
+                  description={item?.quote}
+                /> </Grid>))}
+
+          {/* </Grid>
           <Grid size={{ md: 4, xs: 12 }}>
             <ConteactItemCard
               image={"/assets/Home/EmergencyIcon.svg"}
@@ -282,7 +287,7 @@ const [data, setData] = useState([]);
               title={"24/7 Full Support"}
               description={"Lorem ipsum dolor sit amet,consectetur adipiscing."}
             />
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
