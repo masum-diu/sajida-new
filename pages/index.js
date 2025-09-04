@@ -22,7 +22,7 @@ import Dep_Doctor_bodyparts from "./components/Dep_Doctor_bodyparts";
 import { Article } from "@mui/icons-material";
 import Articles from "./components/Articles";
 import Testimony from "./components/Testimony";
-import { BeatLoader } from 'react-spinners'
+import { BeatLoader } from "react-spinners";
 import dynamic from "next/dynamic";
 import instance from "./api/api_instance";
 const FaqCom = dynamic(() => import("../pages/components/FaqCom"), {
@@ -31,7 +31,7 @@ const FaqCom = dynamic(() => import("../pages/components/FaqCom"), {
 function Home() {
   const router = useRouter();
   const [data, setData] = useState([]);
-  console.log(data)
+  console.log(data);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -41,7 +41,7 @@ function Home() {
       setData(response.data.body);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -263,37 +263,38 @@ function Home() {
           alignItems={"center"}
           sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto" }}
         >
-
-          {data[2]?.data[0]?._mave?.
-            testimonials.map((item, index) => (
-              <Grid size={{ md: 4, xs: 12 }} key={index}>
-                <ConteactItemCard
-                  image={`https://sajedabackend.etherstaging.xyz/${item?.image?.file_path}`}
-                  title={item?.author}
-                  description={item?.quote}
-                /> </Grid>))}
+          {data[2]?.data[0]?._mave?.testimonials.map((item, index) => (
+            <Grid size={{ md: 4, xs: 12 }} key={index}>
+              <ConteactItemCard
+                image={`https://sajedabackend.etherstaging.xyz/${item?.image?.file_path}`}
+                title={item?.author}
+                description={item?.quote}
+              />{" "}
+            </Grid>
+          ))}
         </Grid>
       </Box>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
         <AboutHeroSection
           image1={`https://sajedabackend.etherstaging.xyz/${data[3]?.data[0]?._mave?.file_path}`}
-          image2={"/assets/about/aboutImg2.svg"}
-          title1={"ABOUT SAJIDA"}
-          title2={"HOSPITAL"}
-          subtitle1={" We Collaborate for Better"}
-          subtitle2={"Healthcare"}
+          image2={`https://sajedabackend.etherstaging.xyz/${data[3]?.data[1]?._mave?.file_path}`}
+          title1={data[3]?.data[2]?._mave?.title}
+          title2={data[3]?.data[2]?._mave?.altTitle}
+          subtitle1={data[3]?.data[2]?._mave?.description}
+          subtitle2={data[3]?.data[2]?._mave?.altDescription}
           description={
             "Contrary to popular belief, Lorem Ipsum is not simply random text.It has roots in a piece of classical Latin literature from 45 BC,making it over 2000 years old. Richard McClintock, a Latin professorat Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur"
           }
-          image3={"/assets/about/mission.svg"}
-          title3={"Our Mission"}
+          image3={`https://sajedabackend.etherstaging.xyz/${data[3]?.data[3]?._mave?.file_path}`}
+          title3={data[3]?.data[3]?._mave?.title}
           des1={
-            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour"
+           data[3]?.data[3]?._mave?.description
           }
-          image4={"/assets/about/vision.svg"}
-          title4={"Our Vision"}
+          image4={`https://sajedabackend.etherstaging.xyz/${data[3]?.data[3]?._mave?.file_path}`}
+          title4={data[3]?.data[4]?._mave?.title}
           des2={
-            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour"
+         data[3]?.data[4]?._mave?.description
+
           }
           button1={"Learn More"}
           disable={router?.pathname}

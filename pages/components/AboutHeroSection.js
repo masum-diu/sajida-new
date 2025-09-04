@@ -44,23 +44,23 @@ function AboutHeroSection({
         >
           {title1} <span style={{ color: "#12A551" }}>{title2}</span>
         </Typography>
-        <Typography sx={{ fontSize: 28, lineHeight: 1.2, mt: 1.5 }}>
-          {subtitle1}
-          <br />
-          {subtitle2}
-        </Typography>
         <Typography
-          sx={{
-            fontSize: 16,
-            color: "#AAAAAA",
-            textAlign: "justify",
-            mt: 4,
-          }}
-        >
-          {description}
-        </Typography>
+          sx={{ fontSize: 28, lineHeight: 1.2, mt: 1.5 }}
+          dangerouslySetInnerHTML={{ __html: subtitle1 }}
+        />
 
-        <Stack mt={4} spacing={4} direction={{xs: "column", md: "row"}}>
+       <Typography
+  sx={{
+    fontSize: 16,
+    color: "#AAAAAA",
+    textAlign: "justify",
+    mt: 4,
+  }}
+  dangerouslySetInnerHTML={{ __html: description }}
+/>
+
+
+        <Stack mt={4} spacing={4} direction={{ xs: "column", md: "row" }}>
           <Stack direction={"column"}>
             <Stack alignItems={"center"} direction={"row"} spacing={1}>
               <img src={image3} width={67} />
