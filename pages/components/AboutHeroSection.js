@@ -44,21 +44,21 @@ function AboutHeroSection({
         >
           {title1} <span style={{ color: "#12A551" }}>{title2}</span>
         </Typography>
-        <Typography sx={{ fontSize: 28, lineHeight: 1.2, mt: 1.5 }}>
-          {subtitle1}
-          <br />
-          {subtitle2}
-        </Typography>
+      <Typography
+  sx={{ fontSize: 28, lineHeight: 1.2, mt: 1.5 }}
+  dangerouslySetInnerHTML={{
+    __html: subtitle1
+  }}
+/>
         <Typography
-          sx={{
-            fontSize: 16,
-            color: "#AAAAAA",
-            textAlign: "justify",
-            mt: 4,
-          }}
-        >
-          {description}
-        </Typography>
+  sx={{
+    fontSize: 16,
+    color: "#AAAAAA",
+    textAlign: "justify",
+    mt: 4,
+  }}
+  dangerouslySetInnerHTML={{ __html: description }}
+/>
 
         <Stack mt={4} spacing={4} direction={{xs: "column", md: "row"}}>
           <Stack direction={"column"}>
@@ -68,15 +68,16 @@ function AboutHeroSection({
                 {title3}
               </Typography>
             </Stack>
-            <Typography
-              sx={{
-                fontSize: 16,
-                color: "#AAAAAA",
-                textAlign: "justify",
-              }}
-            >
-              {des1}
-            </Typography>
+          <Typography
+  sx={{
+    fontSize: 16,
+    color: "#AAAAAA",
+    textAlign: "justify",
+  }}
+  dangerouslySetInnerHTML={{ __html: des1 }}
+/>
+
+
           </Stack>
 
           {/* another one */}
@@ -87,16 +88,15 @@ function AboutHeroSection({
                 {title4}
               </Typography>
             </Stack>
-            <Typography
-              sx={{
-                fontSize: 16,
-                color: "#AAAAAA",
-                textAlign: "justify",
-                mt: 2,
-              }}
-            >
-              {des2}
-            </Typography>
+          <Typography
+  sx={{
+    fontSize: 16,
+    color: "#AAAAAA",
+    textAlign: "justify",
+    mt: 2,
+  }}
+  dangerouslySetInnerHTML={{ __html: des2 }}
+/>
           </Stack>
         </Stack>
 
