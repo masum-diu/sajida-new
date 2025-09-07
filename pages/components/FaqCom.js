@@ -35,7 +35,7 @@ function FaqCom({ event }) {
   const [expanded, setExpanded] = useState(null);
   const toggle = (index) =>
     setExpanded((prev) => (prev === index ? null : index));
-  console.log("test:", event);
+  
 
   return (
     <>

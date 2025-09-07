@@ -7,7 +7,7 @@ import { Navigation } from "swiper/modules";
 function Articles({ event, headingSubTitle, headingTitle }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  console.log("check", event);
+
   const breakpoints = {
     0: { slidesPerView: 1, spaceBetween: 10 },
     380: { slidesPerView: 1, spaceBetween: 15 },
