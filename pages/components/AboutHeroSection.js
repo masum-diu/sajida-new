@@ -42,8 +42,13 @@ function AboutHeroSection({
         <Typography
           sx={{ fontSize: 36, fontWeight: 700, color: "#0D5EAE", pt: 4 }}
         >
-          {title1} <span style={{ color: "#12A551" }}>{title2}</span>
+          {title1}{" "}
+          <span
+            style={{ color: "#12A551" }}
+            dangerouslySetInnerHTML={{ __html: title2 }}
+          />
         </Typography>
+
         <Typography
           sx={{ fontSize: 28, lineHeight: 1.2, mt: 1.5 }}
           dangerouslySetInnerHTML={{ __html: subtitle1 }}
@@ -56,9 +61,8 @@ function AboutHeroSection({
             textAlign: "justify",
             mt: 4,
           }}
-        >
-          {description}
-        </Typography>
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
 
         <Stack mt={4} spacing={4} direction={{ xs: "column", md: "row" }}>
           <Stack direction={"column"}>

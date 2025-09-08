@@ -1,5 +1,5 @@
 import { Box, Grid, IconButton, Paper, Stack, Typography } from "@mui/material";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 import AboutHeroSection from "./components/AboutHeroSection";
 import ManagementTeam from "./components/ManagementTeam";
 import { Navigation } from "swiper/modules";
+import instance from "./api/api_instance";
+import { BeatLoader } from "react-spinners";
 
 function about() {
   const [open, setOpen] = useState(false);
@@ -18,6 +20,43 @@ function about() {
   const nextRef = useRef(null);
   const prevRef1 = useRef(null);
   const nextRef1 = useRef(null);
+
+  const [data, setData] = useState([]);
+  console.log("about", data);
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await instance.get("/pages/132");
+
+      setData(response.data.body);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          flexDirection: "column",
+        }}
+      >
+        <BeatLoader color="#191919" size={30} />
+      </Box>
+    );
+  }
+
   const HandleMember = (item) => {
     setOpen(true);
     setObject(item);
@@ -27,37 +66,43 @@ function about() {
       image: "/assets/about/M1img.svg",
       name: "Farooq Sobhan",
       deg: "Chairperson",
-      about: "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. "
+      about:
+        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
     },
     {
       image: "/assets/about/M2img.svg",
       name: "Md. Abdul Karim",
       deg: "Vice Chairperson",
-      about: "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. "
+      about:
+        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
     },
     {
       image: "/assets/about/M3img.svg",
       name: "Nihad Kabir",
       deg: "Member",
-      about: "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. "
+      about:
+        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
     },
     {
       image: "/assets/about/M4img.svg",
       name: "Dr. Rumana Dowla",
       deg: "Member",
-      about: "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. "
+      about:
+        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
     },
     {
       image: "/assets/about/M4img.svg",
       name: "Dr. Rumana Dowla",
       deg: "Member",
-      about: "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. "
+      about:
+        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
     },
     {
       image: "/assets/about/M4img.svg",
       name: "Dr. Rumana Dowla",
       deg: "Member",
-      about: "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. "
+      about:
+        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
     },
   ];
   const breakpoints = {
@@ -66,7 +111,6 @@ function about() {
     600: { slidesPerView: 2, spaceBetween: 20 },
     900: { slidesPerView: 3, spaceBetween: 10 },
     1200: { slidesPerView: 5, spaceBetween: 10 },
-
   };
   const breakpoint = {
     0: { slidesPerView: 1, spaceBetween: 0 },
@@ -74,7 +118,6 @@ function about() {
     600: { slidesPerView: 2, spaceBetween: 20 },
     900: { slidesPerView: 3, spaceBetween: 0 },
     1200: { slidesPerView: 4, spaceBetween: 0 },
-
   };
   const router = useRouter();
 
@@ -109,25 +152,19 @@ function about() {
         />
 
         <AboutHeroSection
-          image1={"/assets/about/aboutImg1.svg"}
+          image1={`https://sajedabackend.etherstaging.xyz/${data[0]?.data[5]?._mave?.file_path}`}
           image2={"/assets/about/aboutImg2.svg"}
-          title1={"ABOUT SAJIDA"}
-          title2={"HOSPITAL"}
-          subtitle1={" We Collaborate for Better"}
+          title1={data[1]?.data[2]?._mave?.title}
+          title2={data[1]?.data[2]?._mave?.description}
+          subtitle1={""}
           subtitle2={"Healthcare"}
-          description={
-            "Contrary to popular belief, Lorem Ipsum is not simply random text.It has roots in a piece of classical Latin literature from 45 BC,making it over 2000 years old. Richard McClintock, a Latin professorat Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur"
-          }
+          description={data[1]?.data[2]?._mave?.altDescription}
           image3={"/assets/about/mission.svg"}
-          title3={"Our Mission"}
-          des1={
-            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour"
-          }
+          title3={data[1]?.data[3]?._mave?.title}
+          des1={data[1]?.data[3]?._mave?.description}
           image4={"/assets/about/vision.svg"}
-          title4={"Our Vision"}
-          des2={
-            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour"
-          }
+          title4={data[1]?.data[4]?._mave?.title}
+          des2={data[1]?.data[4]?._mave?.description}
           button1={"Learn More"}
           disable={router?.pathname}
         />
@@ -142,13 +179,18 @@ function about() {
                 borderRadius: "10px 0 0 10px",
               }}
             >
+              {/* 10+,3,60K+ */}
               <Stack alignItems={"center"} direction={"column"}>
                 <Typography fontSize={48} fontWeight={500}>
-                  10+
+                  {data[2]?.data[0]?._mave?.title}
                 </Typography>
-                <Typography fontSize={16} color="#7A7A7A">
-                  Years of Experience
-                </Typography>
+                <Typography
+                  fontSize={16}
+                  color="#7A7A7A"
+                  dangerouslySetInnerHTML={{
+                    __html: data[2]?.data[0]?._mave?.description,
+                  }}
+                />
               </Stack>
             </Paper>
           </Grid>
@@ -162,11 +204,15 @@ function about() {
             >
               <Stack alignItems={"center"} direction={"column"}>
                 <Typography fontSize={48} fontWeight={500}>
-                  3,60K+
+                  {data[2]?.data[1]?._mave?.title}
                 </Typography>
-                <Typography fontSize={16} color="#7A7A7A">
-                  Trusted by patients
-                </Typography>
+                <Typography
+                  fontSize={16}
+                  color="#7A7A7A"
+                  dangerouslySetInnerHTML={{
+                    __html: data[2]?.data[1]?._mave?.description,
+                  }}
+                />
               </Stack>
             </Paper>
           </Grid>
@@ -182,9 +228,14 @@ function about() {
             >
               <Stack alignItems={"center"} direction={"column"}>
                 <Typography fontSize={48} fontWeight={500}>
-                  100+
+                  {data[2]?.data[2]?._mave?.title}
                 </Typography>
-                <Typography fontSize={16}>Professional Doctor</Typography>
+                <Typography
+                  fontSize={16}
+                  dangerouslySetInnerHTML={{
+                    __html: data[2]?.data[2]?._mave?.description,
+                  }}
+                />
               </Stack>
             </Paper>
           </Grid>
@@ -199,11 +250,15 @@ function about() {
             >
               <Stack alignItems={"center"} direction={"column"}>
                 <Typography fontSize={48} fontWeight={500}>
-                  500+
+                  {data[2]?.data[3]?._mave?.title}
                 </Typography>
-                <Typography fontSize={16} color="#7A7A7A">
-                  Professional Nurses
-                </Typography>
+                <Typography
+                  fontSize={16}
+                  color="#7A7A7A"
+                  dangerouslySetInnerHTML={{
+                    __html: data[2]?.data[3]?._mave?.description,
+                  }}
+                />
               </Stack>
             </Paper>
           </Grid>
@@ -218,7 +273,6 @@ function about() {
           // height: "100vh",
           // width: "90%", maxWidth: "1500px", margin: "0 auto",
           border: "1px solid #EAF0F5",
-
         }}
       >
         <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
@@ -226,14 +280,20 @@ function about() {
             {/* inner grid 1 */}
             <Grid size={{ xs: 12, md: 6 }}>
               <Stack>
+                {/* sajida Hospiat story */}
                 <Typography
                   sx={{ color: "#0D5EAE", fontSize: 36, fontWeight: 700 }}
-                >
-                  SAJIDA HOSPITAL STORY
-                </Typography>
-                <Typography sx={{ color: "#222222", fontSize: 28 }}>
-                  Hospital Overview
-                </Typography>
+                  dangerouslySetInnerHTML={{
+                    __html: data[3]?.data[0]?._mave?.title,
+                  }}
+                />
+                <Typography
+                  sx={{ color: "#222222", fontSize: 28 }}
+                  dangerouslySetInnerHTML={{
+                    __html: data[3]?.data[0]?._mave?.description,
+                  }}
+                />
+
                 <Typography
                   sx={{
                     color: "#222222",
@@ -241,24 +301,11 @@ function about() {
                     textAlign: "justify",
                     mt: 6,
                     width: "100%",
-                    // maxWidth: 600,
                   }}
-                >
-                  SAJIDA HOSPITAL is a value-driven, non-government
-                  organisation. It embodies the principle of corporate
-                  philanthropy, with 51% shareholding of Renata Ltd, one of the
-                  fastest growing pharmaceutical and animal health product
-                  companies in Bangladesh. The organisation, founded in 1993,
-                  aims to empower communities, catalyse entrepreneurship, build
-                  equity and establish enterprises for good with an overarching
-                  vision of ensuring health, happiness, and dignity for all.
-                  SAJIDA’s operations in Bangladesh have touched over 6 million
-                  individuals through its multi-sectoral development programmes
-                  which focus on poverty alleviation, community healthcare and
-                  climate change. It runs one of the largest financial service
-                  operations in Bangladesh and has specialised healthcare
-                  enterprises.
-                </Typography>
+                  dangerouslySetInnerHTML={{
+                    __html: data[3]?.data[0]?._mave?.altDescription,
+                  }}
+                />
 
                 <Typography
                   sx={{
@@ -269,14 +316,7 @@ function about() {
                     width: "100%",
                     maxWidth: 600,
                   }}
-                >
-                  The organisation has come a long way since its humble
-                  beginnings in 1993 when it was presented as a gift by our
-                  Founder, Syed Humayun Kabir, to the patron Sajida Humayun
-                  Kabir to mark their 25th wedding anniversary. Syed Humayun
-                  Kabir served as SAJIDA’s Chairperson for almost two decades
-                  and also as board member of Renata Limited.
-                </Typography>
+                ></Typography>
               </Stack>
             </Grid>
             {/* inner grid 2 */}
@@ -290,12 +330,23 @@ function about() {
         </Box>
       </Box>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 3 }}>
-        <Stack direction={{ md: "row", xs: "column" }} justifyContent={"space-between"} alignItems={"center"} mb={2}>
-          <Stack direction={"column"} >
+        <Stack
+          direction={{ md: "row", xs: "column" }}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          mb={2}
+        >
+          <Stack direction={"column"}>
+            {/* our management */}
             <Typography fontSize={36} fontWeight={700} color="#0D5EAE">
-              OUR MANAGEMENT TEAM
+              {data[4]?.data[0]?._mave?.title}
             </Typography>
-            <Typography fontSize={28}>Leadership & Governance</Typography>
+            <Typography
+              fontSize={28}
+              dangerouslySetInnerHTML={{
+                __html: data[4]?.data[0]?._mave?.description,
+              }}
+            />
           </Stack>
           <Stack
             direction="row"
@@ -304,15 +355,14 @@ function about() {
             alignItems={"flex-end"}
             mb={1}
           >
-            <IconButton ref={prevRef} >
+            <IconButton ref={prevRef}>
               <img src="/assets/left.svg" alt="" width={30} />
             </IconButton>
-            <IconButton ref={nextRef} >
+            <IconButton ref={nextRef}>
               <img src="/assets/right.svg" alt="" width={30} />
             </IconButton>
           </Stack>
         </Stack>
-
 
         {/* image slider */}
         <Swiper
@@ -336,20 +386,22 @@ function about() {
           }}
           className="mySwiper"
         >
-          {management.map((item, index) => (
-            <SwiperSlide key={index}  >
+          {data[4]?.data[1]?._mave?.cards.map((item, index) => (
+            <SwiperSlide key={index}>
               <img
-                src={item.image}
+                // src={item.media_files?.file_path}
+                src={`https://sajedabackend.etherstaging.xyz/${item.media_files?.file_path}`}
                 width={"100%"}
                 onClick={() => HandleMember(item)}
                 style={{ borderRadius: 16, cursor: "pointer" }}
               />
               <Typography sx={{ fontSize: 20, fontWeight: 600, mt: 1 }}>
-                {item.name}
+                {item.title_en}
               </Typography>
-              <Typography sx={{ fontSize: 16, color: "#AAAAAA" }}>
-                {item.deg}
-              </Typography>
+              <Typography
+                sx={{ fontSize: 16, color: "#AAAAAA" }}
+                dangerouslySetInnerHTML={{ __html: item.description_en }}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -357,12 +409,19 @@ function about() {
 
       {/* new section awards */}
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
-        <Stack direction={{ md: "row", xs: "column" }} justifyContent={"space-between"} alignItems={"center"} mb={2}>
-          <Stack direction={"column"} >
+        <Stack
+          direction={{ md: "row", xs: "column" }}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          mb={2}
+        >
+          <Stack direction={"column"}>
             <Typography fontSize={36} fontWeight={700} color="#0D5EAE">
-              CERTIFICATIONS & ACCREDITATIONS
+              {data[5]?.data[0]?._mave?.title}
             </Typography>
-            <Typography fontSize={28}>Award & Certificate</Typography>
+            <Typography fontSize={28}>
+              {data[5]?.data[1]?._mave?.description}
+            </Typography>
           </Stack>
           <Stack
             direction="row"
@@ -371,15 +430,14 @@ function about() {
             alignItems={"flex-end"}
             mb={1}
           >
-            <IconButton ref={prevRef1} >
+            <IconButton ref={prevRef1}>
               <img src="/assets/left.svg" alt="" width={30} />
             </IconButton>
-            <IconButton ref={nextRef1} >
+            <IconButton ref={nextRef1}>
               <img src="/assets/right.svg" alt="" width={30} />
             </IconButton>
           </Stack>
         </Stack>
-
 
         {/* image slider */}
         <Swiper
@@ -400,20 +458,23 @@ function about() {
           pagination={{
             clickable: true,
           }}
-
           className="mySwiper"
         >
-          {[
-            "/assets/about/award.svg",
-            "/assets/about/award.svg",
-            "/assets/about/award.svg",
-            "/assets/about/award.svg",
-            "/assets/about/award.svg",
-          ].map((item, index) => (
-            <SwiperSlide key={index}>
-              <img src={item} width={"100%"} />
-            </SwiperSlide>
-          ))}
+          {
+            // "/assets/about/award.svg",
+            // "/assets/about/award.svg",
+            // "/assets/about/award.svg",
+            // "/assets/about/award.svg",
+            // "/assets/about/award.svg",
+            data[5]?.data[1]?.mave?.medias[0]?.map((item, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={`https://sajedabackend.etherstaging.xyz/${item.file_path}`} // src={item.file_path}
+                  width="100%"
+                />
+              </SwiperSlide>
+            ))
+          }
         </Swiper>
       </Box>
       <ManagementTeam open={open} setOpen={setOpen} data={object} />
