@@ -11,13 +11,51 @@ import BloodtypeOutlinedIcon from "@mui/icons-material/BloodtypeOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import MedicalServicesOutlinedIcon from "@mui/icons-material/MedicalServicesOutlined";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import ServiceCards from "../components/ServiceCards";
 import { useRouter } from "next/router";
+import instance from "../api/api_instance";
+import { BeatLoader } from "react-spinners";
 
 function servicePage() {
   const router = useRouter();
+  const [data, setData] = useState([]);
+  console.log("about", data);
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await instance.get("/pages/133");
+
+      setData(response.data.body);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          flexDirection: "column",
+        }}
+      >
+        <BeatLoader color="#191919" size={30} />
+      </Box>
+    );
+  }
+
   const serviceCard = [
     {
       iconItem: MedicationOutlinedIcon,
@@ -130,7 +168,7 @@ function servicePage() {
         </Stack>
 
         <img
-          src={"/assets/service/bannerimg.svg"}
+          src={`https://sajedabackend.etherstaging.xyz/${data[0]?.data[0]?._mave?.file_path}`}
           width={"100%"}
           style={{ marginTop: "23px" }}
         />
@@ -142,11 +180,14 @@ function servicePage() {
               <Typography
                 sx={{ color: "#0D5EAE", fontSize: 36, fontWeight: 700, mt: 2 }}
               >
-                SERVICES
+                {data[1]?.data[0]?._mave?.title}
               </Typography>
-              <Typography sx={{ color: "#222222", fontSize: 28 }}>
-                Hospital Overview
-              </Typography>
+              <Typography
+                sx={{ color: "#222222", fontSize: 28 }}
+                dangerouslySetInnerHTML={{
+                  __html: data[1]?.data[0]?._mave?.description,
+                }}
+              />
               <Typography
                 sx={{
                   color: "#222222",
@@ -156,21 +197,10 @@ function servicePage() {
                   width: "100%",
                   maxWidth: 954,
                 }}
-              >
-                SAJIDA HOSPITAL is a value-driven, non-government
-                organisation. It embodies the principle of corporate
-                philanthropy, with 51% shareholding of Renata Ltd, one of the
-                fastest growing pharmaceutical and animal health product
-                companies in Bangladesh. The organisation, founded in 1993, aims
-                to empower communities, catalyse entrepreneurship, build equity
-                and establish enterprises for good with an overarching vision of
-                ensuring health, happiness, and dignity for all. SAJIDA’s
-                operations in Bangladesh have touched over 6 million individuals
-                through its multi-sectoral development programmes which focus on
-                poverty alleviation, community healthcare and climate change. It
-                runs one of the largest financial service operations in
-                Bangladesh and has specialised healthcare enterprises.
-              </Typography>
+                dangerouslySetInnerHTML={{
+                  __html: data[1]?.data[0]?._mave?.altDescription,
+                }}
+              />
 
               <Typography
                 sx={{
@@ -197,13 +227,13 @@ function servicePage() {
             <Grid container spacing={4}>
               <Grid size={{ xs: 12, md: 6 }} mt={{ lg: 4, xl: 5 }}>
                 <img
-                  src={"/assets/service/srimg1.svg"}
+                  src={`https://sajedabackend.etherstaging.xyz/${data[1]?.data[1]?._mave?.file_path}`}
                   style={{ width: "100%", maxWidth: 350, borderRadius: 16 }}
                 />
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
                 <img
-                  src={"/assets/service/srimg2.svg"}
+                  src={`https://sajedabackend.etherstaging.xyz/${data[1]?.data[2]?._mave?.file_path}`}
                   style={{ width: "100%", maxWidth: 350, borderRadius: 16 }}
                 />
               </Grid>
@@ -220,13 +250,13 @@ function servicePage() {
             <Grid container spacing={4}>
               <Grid size={{ xs: 12, md: 6 }}>
                 <img
-                  src={"/assets/service/srimg3.svg"}
+                  src={`https://sajedabackend.etherstaging.xyz/${data[2]?.data[0]?._mave?.file_path}`}
                   style={{ width: "100%", maxWidth: 350, borderRadius: 16 }}
                 />
               </Grid>
               <Grid size={{ xs: 12, md: 6 }} mt={{ lg: 4, xl: 5 }}>
                 <img
-                  src={"/assets/service/srimg4.svg"}
+                  src={`https://sajedabackend.etherstaging.xyz/${data[2]?.data[1]?._mave?.file_path}`}
                   style={{ width: "100%", maxWidth: 350, borderRadius: 16 }}
                 />
               </Grid>
@@ -238,11 +268,15 @@ function servicePage() {
               <Typography
                 sx={{ color: "#0D5EAE", fontSize: 36, fontWeight: 700, mt: 2 }}
               >
-                SERVICES
+                {data[2]?.data[2]?._mave?.title}
               </Typography>
-              <Typography sx={{ color: "#222222", fontSize: 28 }}>
-                Hospital Overview
-              </Typography>
+              <Typography
+                sx={{ color: "#222222", fontSize: 28 }}
+                dangerouslySetInnerHTML={{
+                  __html: data[2]?.data[2]?._mave?.description,
+                }}
+              />
+
               <Typography
                 sx={{
                   color: "#222222",
@@ -252,21 +286,10 @@ function servicePage() {
                   width: "100%",
                   maxWidth: 954,
                 }}
-              >
-                SAJIDA HOSPITAL is a value-driven, non-government
-                organisation. It embodies the principle of corporate
-                philanthropy, with 51% shareholding of Renata Ltd, one of the
-                fastest growing pharmaceutical and animal health product
-                companies in Bangladesh. The organisation, founded in 1993, aims
-                to empower communities, catalyse entrepreneurship, build equity
-                and establish enterprises for good with an overarching vision of
-                ensuring health, happiness, and dignity for all. SAJIDA’s
-                operations in Bangladesh have touched over 6 million individuals
-                through its multi-sectoral development programmes which focus on
-                poverty alleviation, community healthcare and climate change. It
-                runs one of the largest financial service operations in
-                Bangladesh and has specialised healthcare enterprises.
-              </Typography>
+                dangerouslySetInnerHTML={{
+                  __html: data[2]?.data[2]?._mave?.altDescription,
+                }}
+              />
 
               <Typography
                 sx={{
@@ -292,11 +315,15 @@ function servicePage() {
         <Typography
           sx={{ color: "#0D5EAE", fontSize: 36, fontWeight: 700, mt: 5 }}
         >
-          OUR SERVICES
+            {data[3]?.data[0]?._mave?.title}
         </Typography>
-        <Typography sx={{ color: "#222222", fontSize: 28 }}>
-          Medical Facilities
-        </Typography>
+      <Typography
+  sx={{ color: "#222222", fontSize: 28 }}
+  dangerouslySetInnerHTML={{
+    __html: data[3]?.data[0]?._mave?.description,
+  }}
+/>
+
 
         <Grid container spacing={3} py={10}>
           {serviceCard.map((service, index) => (

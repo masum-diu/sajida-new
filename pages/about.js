@@ -146,14 +146,14 @@ function about() {
         </Stack>
 
         <img
-          src={"/assets/about/bannar.svg"}
+          src={`https://sajedabackend.etherstaging.xyz/${data[0]?.data[0]?._mave?.file_path}`}
           width={"100%"}
           style={{ marginTop: "23px" }}
         />
 
         <AboutHeroSection
-          image1={`https://sajedabackend.etherstaging.xyz/${data[0]?.data[5]?._mave?.file_path}`}
-          image2={"/assets/about/aboutImg2.svg"}
+          image1={`https://sajedabackend.etherstaging.xyz/${data[1]?.data[0]?._mave?.file_path}`}
+          image2={`https://sajedabackend.etherstaging.xyz/${data[1]?.data[1]?._mave?.file_path}`}
           title1={data[1]?.data[2]?._mave?.title}
           title2={data[1]?.data[2]?._mave?.description}
           subtitle1={""}
@@ -322,7 +322,7 @@ function about() {
             {/* inner grid 2 */}
             <Grid size={{ xs: 12, md: 6 }}>
               <img
-                src={"/assets/about/hospitalStory.svg"}
+                src={`https://sajedabackend.etherstaging.xyz/${data[3]?.data[1]?._mave?.file_path}`}
                 style={{ width: "100%", maxWidth: 873 }}
               />
             </Grid>
@@ -466,13 +466,14 @@ function about() {
             // "/assets/about/award.svg",
             // "/assets/about/award.svg",
             // "/assets/about/award.svg",
-            data[5]?.data[1]?.mave?.medias[0]?.map((item, index) => (
-              <SwiperSlide key={index}>
-                <img
-                  src={`https://sajedabackend.etherstaging.xyz/${item.file_path}`} // src={item.file_path}
-                  width="100%"
-                />
-              </SwiperSlide>
+           data[5]?.data[1]?._mave?.medias?.map((item, index) => (
+    <SwiperSlide key={index}>
+      <img
+        src={`https://sajedabackend.etherstaging.xyz/${item.file_path}`}
+        width="100%"
+        alt={item.title || `slide-${index}`}
+      />
+    </SwiperSlide>
             ))
           }
         </Swiper>

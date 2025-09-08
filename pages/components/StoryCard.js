@@ -39,9 +39,10 @@ function StoryCard({ image, date, title, description, slug }) {
           {title}
         </Typography>
 
-        <Typography sx={{ color: "#AAAAAA", fontSize: 16 }}>
-          {description}
-        </Typography>
+        <Typography
+          sx={{ color: "#AAAAAA", fontSize: 16 }}
+          dangerouslySetInnerHTML={{ __html: description || "" }}
+        />
 
         <Box mt={2}>
           <Link href={`/stories/${slug}`} passHref legacyBehavior>

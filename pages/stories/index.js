@@ -11,10 +11,48 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StoryCard from "../components/StoryCard";
+import { BeatLoader } from "react-spinners";
+import instance from "../api/api_instance";
 
 function storiesPage() {
+  const [data, setData] = useState([]);
+  console.log("stories", data);
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await instance.get("/pages/135");
+
+      setData(response.data.body);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          flexDirection: "column",
+        }}
+      >
+        <BeatLoader color="#191919" size={30} />
+      </Box>
+    );
+  }
+
   const storyItems = [
     {
       image: "/assets/stories/people.svg",
@@ -100,7 +138,7 @@ function storiesPage() {
           </Stack>
         </Stack>
         <img
-          src={"/assets/stories/banner.svg"}
+          src={`https://sajedabackend.etherstaging.xyz/${data[0]?.data[0]?._mave?.file_path}`}
           width={"100%"}
           style={{ marginTop: "23px" }}
         />
@@ -113,11 +151,15 @@ function storiesPage() {
             mt: 5,
           }}
         >
-          our case stories
+          {data[1]?.data[0]?._mave?.title}
         </Typography>
-        <Typography sx={{ color: "#222222", fontSize: 28 }}>
-          Hospital & Doctor Team
-        </Typography>
+        <Typography
+          sx={{ color: "#222222", fontSize: 28 }}
+          dangerouslySetInnerHTML={{
+            __html: data[1]?.data[0]?._mave?.description, // fixed typo
+          }}
+        />
+
         <Box
           sx={{
             bgcolor: "#EAF0F5",
@@ -139,30 +181,24 @@ function storiesPage() {
                 />
                 <Box>
                   <Typography fontSize={24} fontWeight={700}>
-                    Dr. Shaila Sabrin
+                    {data[1]?.data[2]?._mave?.title}
                   </Typography>
                   <Typography
                     variant="body2"
                     sx={{ color: "#12A551", fontWeight: 500, fontSize: 16 }}
-                  >
-                    Chief Dietitian MBBS, MD (Cardiology)
-                  </Typography>
+                    dangerouslySetInnerHTML={{
+                      __html: data[1]?.data[2]?._mave?.description,
+                    }}
+                  />
                 </Box>
               </Stack>
               <Typography
                 variant="body2"
                 sx={{ color: "#4B4B4B", textAlign: "justify" }}
-              >
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker.
-              </Typography>
+                dangerouslySetInnerHTML={{
+                  __html: data[1]?.data[2]?._mave?.altDescription,
+                }}
+              />
             </Grid>
 
             {/* Right Column */}
@@ -176,7 +212,7 @@ function storiesPage() {
                 }}
               >
                 <img
-                  src="/assets/stories/main.svg"
+                  src={`https://sajedabackend.etherstaging.xyz/${data[1]?.data[1]?._mave?.file_path}`}
                   alt="Operation Room"
                   width={600}
                   height={400}
@@ -191,20 +227,24 @@ function storiesPage() {
           </Grid>
         </Box>
         <Typography sx={{ fontSize: 28, mt: 6 }}>All Case Stories</Typography>
-
-        <Grid container spacing={2} mb={6}>
-          {storyItems.map((item, index) => (
-            <Grid Grid key={index} size={{ md: 3, xs: 12 }}>
-              <StoryCard
-                image={item.image}
-                date={item.date}
-                title={item.title}
-                description={item.description}
-                slug={item.slug}
-              />
-            </Grid>
-          ))}
-        </Grid>
+  <Grid container spacing={2} mb={6}>
+  {Array.isArray(data[2]?.data) &&
+    data[2].data.map((item, index) => (
+      <Grid item key={index} md={3} xs={12}>
+        <StoryCard
+          image={
+            item._mave?.file_path
+              ? `https://sajedabackend.etherstaging.xyz/${item._mave.file_path}`
+              : "/assets/stories/people.svg"
+          }
+          date={item._mave?.updated_at || ""}
+          title={item._mave?.title_en || ""}
+          description={item._mave?.description_en || ""}
+          slug={item._mave?.id?.toString() || ""}
+        />
+      </Grid>
+    ))}
+</Grid>
       </Box>
     </>
   );
