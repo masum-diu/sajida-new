@@ -7,6 +7,7 @@ import { Navigation } from "swiper/modules";
 function Articles({ event, headingSubTitle, headingTitle }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+
   const breakpoints = {
     0: { slidesPerView: 1, spaceBetween: 10 },
     380: { slidesPerView: 1, spaceBetween: 15 },
@@ -72,7 +73,7 @@ function Articles({ event, headingSubTitle, headingTitle }) {
             >
               {/* Date badge */}
               <Chip
-                label={event?.date}
+                label={event?.title_en}
                 sx={{
                   position: "absolute",
                   top: " 42%",
@@ -89,7 +90,7 @@ function Articles({ event, headingSubTitle, headingTitle }) {
               {/* Image */}
               <Box sx={{ width: "100%", overflow: "hidden" }}>
                 <img
-                  src={event?.image}
+                  src={`https://sajedabackend.etherstaging.xyz/${event?.media_files?.file_path}`}
                   alt={event?.title}
                   style={{
                     width: "100%",
@@ -106,7 +107,10 @@ function Articles({ event, headingSubTitle, headingTitle }) {
                   variant="body2"
                   sx={{ fontWeight: 600, fontSize: 16, color: "#2A6498" }}
                 >
-                  {event.title}
+                  <span
+                    dangerouslySetInnerHTML={{ __html: event.description_en }}
+                    style={{ color: "#2A6498" }}
+                  />
                 </Typography>
               </Box>
             </Paper>

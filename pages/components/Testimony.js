@@ -17,6 +17,7 @@ import { Navigation } from "swiper/modules";
 function Testimony({ event }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+
   const breakpoints = {
     0: { slidesPerView: 1, spaceBetween: 10 },
     380: { slidesPerView: 1, spaceBetween: 15 },
@@ -84,7 +85,7 @@ function Testimony({ event }) {
               }}
             >
               <Stack alignItems={"center"}>
-                <Avatar src={event.image} sx={{ width: 139, height: 139 }} />
+                <Avatar   src={`https://sajedabackend.etherstaging.xyz/${event?.media_files?.file_path}`} sx={{ width: 139, height: 139 }} />
               </Stack>
 
               <Box sx={{ position: "absolute", top: " 7%", right: "25%" }}>
@@ -137,13 +138,13 @@ function Testimony({ event }) {
                     },
                   }}
                 >
-                  {event.btn}
+                  Details
                 </Button>
                 <Stack direction={"column"}>
                   <Typography
                     sx={{ fontSize: 20, fontWeight: 700, color: "#2A6498" }}
                   >
-                    {event.name}
+                    {event.title_en}
                   </Typography>
                   <Typography sx={{ fontSize: 16, color: "#2A6498" }}>
                     Age: {event.age}

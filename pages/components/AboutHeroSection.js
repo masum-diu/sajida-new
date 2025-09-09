@@ -38,15 +38,11 @@ function AboutHeroSection({
           </Grid>
         </Grid>
       </Grid>
+
       <Grid size={{ xs: 12, md: 6 }}>
-        <Typography
-          sx={{ fontSize: 36, fontWeight: 700, color: "#0D5EAE", pt: 4 }}
-        >
+        <Typography sx={{ fontSize: 36, fontWeight: 700, color: "#0D5EAE", pt: 4 }}>
           {title1}{" "}
-          <span
-            style={{ color: "#12A551" }}
-            dangerouslySetInnerHTML={{ __html: title2 }}
-          />
+          <span style={{ color: "#12A551" }} dangerouslySetInnerHTML={{ __html: title2 }} />
         </Typography>
 
         <Typography
@@ -68,9 +64,7 @@ function AboutHeroSection({
           <Stack direction={"column"}>
             <Stack alignItems={"center"} direction={"row"} spacing={1}>
               <img src={image3} width={67} />
-              <Typography sx={{ fontSize: 28, fontWeight: 500 }}>
-                {title3}
-              </Typography>
+              <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{title3}</Typography>
             </Stack>
             <Typography
               sx={{
@@ -86,9 +80,7 @@ function AboutHeroSection({
           <Stack direction={"column"}>
             <Stack alignItems={"center"} direction={"row"} spacing={2}>
               <img src={image4} width={50} />
-              <Typography sx={{ fontSize: 28, fontWeight: 500 }}>
-                {title4}
-              </Typography>
+              <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{title4}</Typography>
             </Stack>
             <Typography
               sx={{
@@ -102,9 +94,7 @@ function AboutHeroSection({
           </Stack>
         </Stack>
 
-        {disable === "/about" ? (
-          ""
-        ) : (
+        {disable === "/about" ? null : (
           <Button
             onClick={() => router.push("/about")}
             variant="contained"
@@ -118,10 +108,10 @@ function AboutHeroSection({
               marginTop: 4,
               textTransform: "capitalize",
               p: 1,
-              backgroundColor: "#2A6498", // ✅ Initial background color set
-              color: "#fff", // ✅ Text color
+              backgroundColor: "#2A6498",
+              color: "#fff",
               "&:hover": {
-                backgroundColor: "#2A6498", // ✅ Keep same on hover
+                backgroundColor: "#2A6498",
                 boxShadow: "none",
               },
               "&:focus": {

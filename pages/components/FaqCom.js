@@ -11,7 +11,7 @@ import {
   Stack,
 } from "@mui/material";
 
-function FaqCom() {
+function FaqCom({ event }) {
   // Q&A data
   const faqs = [
     {
@@ -35,22 +35,27 @@ function FaqCom() {
   const [expanded, setExpanded] = useState(null);
   const toggle = (index) =>
     setExpanded((prev) => (prev === index ? null : index));
+  
 
   return (
     <>
       <Grid my={5} container spacing={6}>
         {/* first grid */}
         <Grid size={{ md: 5, xs: 12 }}>
-          <img src={"/assets/contact/faq.svg"} width={"100%"} alt="FAQ" />
+          <img
+            src={`https://sajedabackend.etherstaging.xyz/${event[2]?._mave?.file_path}`}
+            width="100%"
+            alt="FAQ"
+          />
         </Grid>
 
         {/* second grid */}
         <Grid size={{ md: 7, xs: 12 }}>
           <Typography sx={{ fontSize: 36, color: "#2A6498", fontWeight: 700 }}>
-            FAQS
+            {event[1]?._mave?.title}
           </Typography>
           <Typography sx={{ fontSize: 28 }}>
-            Frequently Asked Questions
+            {event[1]?._mave?.altTitle}
           </Typography>
           <Typography
             sx={{
@@ -60,14 +65,10 @@ function FaqCom() {
               width: "100%",
               mt: 2,
             }}
-          >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            rema......
-          </Typography>
+            dangerouslySetInnerHTML={{
+              __html: event[1]?._mave?.description || "",
+            }}
+          />
 
           {/* accordion */}
           <Paper
@@ -91,7 +92,7 @@ function FaqCom() {
                   expanded={isOpen}
                   onChange={() => toggle(i)}
                   sx={{
-                    "&::before": { display: "none" }, // remove default divider
+                    "&::before": { display: "none" }, 
                     borderBottom:
                       i === faqs.length - 1 ? "none" : "1px solid #E7ECF2",
                   }}

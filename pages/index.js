@@ -283,14 +283,14 @@ function Home() {
           subtitle1={data[3]?.data[2]?._mave?.description}
           subtitle2={data[3]?.data[2]?._mave?.altDescription}
           description={
-            "Contrary to popular belief, Lorem Ipsum is not simply random text.It has roots in a piece of classical Latin literature from 45 BC,making it over 2000 years old. Richard McClintock, a Latin professorat Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur"
+            data[3]?.data[2]?._mave?.altDescription
           }
-          image3={`https://sajedabackend.etherstaging.xyz/${data[3]?.data[3]?._mave?.file_path}`}
+          image3={"/assets/about/mission.svg"}
           title3={data[3]?.data[3]?._mave?.title}
           des1={
            data[3]?.data[3]?._mave?.description
           }
-          image4={`https://sajedabackend.etherstaging.xyz/${data[3]?.data[3]?._mave?.file_path}`}
+          image4={"/assets/about/vision.svg"}
           title4={data[3]?.data[4]?._mave?.title}
           des2={
          data[3]?.data[4]?._mave?.description
@@ -365,7 +365,8 @@ function Home() {
       </Box>
       <Box
         sx={{
-          backgroundImage: "url(/assets/homeshowcase.svg)",
+          backgroundImage: `url(https://sajedabackend.etherstaging.xyz/${data[4]?.data[0]?._mave?.testimonials[0]?.image?.file_path})`,
+
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -383,7 +384,7 @@ function Home() {
               fontSize: { xs: 22, sm: 28, md: 40 },
             }}
           >
-            Executive Health Check-up
+            {data[4]?.data[0]?._mave?.testimonials[0]?.author}
           </Typography>
 
           <Typography
@@ -394,8 +395,7 @@ function Home() {
               maxWidth: { xs: "100%", md: 854 },
             }}
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard
+          {data[4]?.data[0]?._mave?.testimonials[0]?.quote}
           </Typography>
 
           <Button
@@ -423,14 +423,14 @@ function Home() {
 
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 4 }}>
         <Articles
-          event={events}
-          headingTitle={"Articles and News"}
+          event={data[5]?.data[0]?._mave?.cards}
+          headingTitle={data[5]?.data[0]?._mave?.title_en}
           headingSubTitle={"Doctors & Hospital"}
         />
       </Box>
       <Box
         sx={{
-          backgroundImage: "url('/assets/about/homesevice.svg')",
+          backgroundImage: `url(https://sajedabackend.etherstaging.xyz/${data[5]?.data[0]?._mave?.cards?.image?.file_path})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -440,11 +440,14 @@ function Home() {
         }}
       >
         <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 4 }}>
-          <Testimony event={test} />
+          <Testimony event={data[5]?.data[1]?._mave?.cards} />
         </Box>
       </Box>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 4 }}>
-        <FaqCom />
+        <FaqCom 
+              event = {data[6]?.data}
+        />
+
       </Box>
       <Stack sx={{ width: "100%", mt: 3 }}>
         <iframe
