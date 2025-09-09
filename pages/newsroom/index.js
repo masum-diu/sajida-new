@@ -1,9 +1,47 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NewsroomCards from "../components/NewsroomCards";
+import { BeatLoader } from "react-spinners";
+import instance from "../api/api_instance";
 
 function newsroomPage() {
+  const [data, setData] = useState([]);
+  console.log("about", data);
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await instance.get("/pages/136");
+
+      setData(response.data.body);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          flexDirection: "column",
+        }}
+      >
+        <BeatLoader color="#191919" size={30} />
+      </Box>
+    );
+  }
+
   const newsroomItems = [
     {
       image: "/assets/stories/people.svg",
@@ -123,15 +161,14 @@ function newsroomPage() {
           my={4}
           sx={{ fontSize: 32, fontWeight: 700, color: "#2A6498" }}
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Ipsum has been the industry's standard{" "}
+          {data[0]?.data[0]?.value}
         </Typography>
 
         <Grid container spacing={4} my={6} alignItems={"center"}>
           {/* inner grid 1 */}
           <Grid size={{ xs: 12, md: 6 }}>
             <img
-              src={"/assets/newsroom/main.svg"}
+              src={`https://sajedabackend.etherstaging.xyz/${data[0]?.data[1]?._mave?.file_path}`}
               style={{
                 width: "100%",
                 maxWidth: "843px",
@@ -142,36 +179,33 @@ function newsroomPage() {
           </Grid>
           {/* inner grid 2 */}
           <Grid size={{ xs: 12, md: 6 }}>
-            <Typography sx={{ fontSize: 20, textAlign: "justify" }}>
-              The organisation has come a long way since its humble beginnings
-              in 1993 when it was presented as a gift by our Founder, Syed
-              Humayun Kabir, to the patron Sajida Humayun Kabir to mark their
-              25th wedding anniversary. Syed Humayun Kabir served as SAJIDA’s
-              Chairperson for almost two decades and also as board member of
-              Renata Limited. The organisation has come a long way since its
-              humble beginnings in 1993 when it was presented as a gift by our
-              Founder, Syed Humayun Kabir, to the patron Sajida Humayun Kabir to
-              mark their 25th wedding anniversary. Syed Humayun Kabir served as
-              SAJIDA’s Chairperson for almost two decades and also as board
-              member of Renata Limited.{" "}
-            </Typography>
+            <Typography
+              sx={{ fontSize: 20, textAlign: "justify" }}
+              dangerouslySetInnerHTML={{ __html: data[0]?.data[2]?.value }}
+            />
           </Grid>
         </Grid>
 
         <Typography sx={{ fontSize: 28, mt: 6 }}>All News & Blogs</Typography>
-        <Grid container spacing={2} mb={6} >
-          {newsroomItems.map((item, index) => (
-            <Grid key={index} size={{ md: 3, xs: 12 }}>
-              <NewsroomCards
-                image={item.image}
-                date={item.date}
-                title={item.title}
-                description={item.description}
-                slug={item.slug}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        <Grid container spacing={2} mb={6}>
+  
+  {Array.isArray(data[1]?.data) &&
+    data[1].data.map((item, index) => (
+      <Grid item key={index} md={3} xs={12}>
+        <NewsroomCards
+          image={
+            item._mave?.media_files?.file_path
+              ? `https://sajedabackend.etherstaging.xyz/${item._mave.media_files.file_path}`
+              : "/assets/stories/people.svg"
+          }
+          title={item._mave?.title_en || ""}
+          date={item._mave?.updated_at || ""}
+          description={item._mave?.description_en || ""}
+          slug={item._mave?.id?.toString() || ""}
+        />
+      </Grid>
+    ))}
+</Grid>
       </Box>
     </>
   );

@@ -10,8 +10,9 @@ import {
   IconButton,
   Stack,
 } from "@mui/material";
+import { BeatLoader } from "react-spinners";
 
-function FaqCom({ event }) {
+function FaqCom({ event ,loading}) {
   // Q&A data
   const faqs = [
     {
@@ -36,6 +37,21 @@ function FaqCom({ event }) {
   const toggle = (index) =>
     setExpanded((prev) => (prev === index ? null : index));
   
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          flexDirection: "column",
+        }}
+      >
+        <BeatLoader color="#191919" size={30} />
+      </Box>
+    );
+  }
 
   return (
     <>

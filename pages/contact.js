@@ -1,4 +1,3 @@
-
 import {
   Box,
   Button,
@@ -10,12 +9,51 @@ import {
 } from "@mui/material";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import React from "react";
-const FaqCom = dynamic(() => import("../pages/components/FaqCom"), { ssr: false });
+import React, { useEffect, useState } from "react";
+import { BeatLoader } from "react-spinners";
+import instance from "./api/api_instance";
+const FaqCom = dynamic(() => import("../pages/components/FaqCom"), {
+  ssr: false,
+});
 
 function contact() {
   const router = useRouter();
-  
+  const [data, setData] = useState([]);
+  console.log("about", data);
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await instance.get("/pages/137");
+
+      setData(response.data.body);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          flexDirection: "column",
+        }}
+      >
+        <BeatLoader color="#191919" size={30} />
+      </Box>
+    );
+  }
+
   return (
     <>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
@@ -40,7 +78,7 @@ function contact() {
           </Stack>
         </Stack>
         <img
-          src={"/assets/contact/banner.svg"}
+          src={`https://sajedabackend.etherstaging.xyz/${data[0]?.data[0]?._mave?.file_path}`}
           width={"100%"}
           style={{ marginTop: "23px" }}
         />
@@ -54,11 +92,15 @@ function contact() {
             mt: 5,
           }}
         >
-          Get in touch
+          {data[1]?.data[0]?._mave?.title}
         </Typography>
-        <Typography my={2} sx={{ color: "#222222", fontSize: 28 }}>
-          Contact us
-        </Typography>
+        <Typography
+          my={2}
+          sx={{ color: "#222222", fontSize: 28 }}
+          dangerouslySetInnerHTML={{
+            __html: data[1]?.data[0]?._mave?.description || "",
+          }}
+        />
 
         <Grid container spacing={2}>
           {/* first grid */}
@@ -70,50 +112,50 @@ function contact() {
                 textAlign: "justify",
                 maxWidth: 650,
               }}
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-              tellus, luctus Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit. Ut elit tellus, luctus nec ullamcorper mattis. Lorem ipsum
-              dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
-              luctus nec ullamcorper mattis. nec ullamcorper mattis. Lorem ipsum
-              dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
-              luctus nec ullamcorper mattis.
-            </Typography>
+              dangerouslySetInnerHTML={{
+                __html: data[1]?.data[0]?._mave?.altDescription || "",
+              }}
+            />
 
             <Stack my={3} direction={{ md: "row", xs: "column" }} spacing={2}>
               <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
                 <img src={"/assets/contact/address.svg"} width={44} />
                 <Stack direction={"column"}>
-                  <Typography sx={{ fontSize: 17 }}>Address</Typography>
+                  <Typography sx={{ fontSize: 17 }}>
+                    {data[2]?.data[0]?._mave?.title}
+                  </Typography>
                   <Typography
                     sx={{ fontSize: 16, color: "#7A7A7A", maxWidth: 199 }}
-                  >
-                    034 Dummy Demo, Demo, Demo 1000
-                  </Typography>
+                    dangerouslySetInnerHTML={{
+                      __html: data[2]?.data[0]?._mave?.description || "",
+                    }}
+                  />
                 </Stack>
               </Stack>
               {/* another one */}
               <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
                 <img src={"/assets/contact/email.svg"} width={44} />
                 <Stack direction={"column"}>
-                  <Typography sx={{ fontSize: 17 }}>Email</Typography>
-                  <Typography
+                  <Typography sx={{ fontSize: 17 }}>{data[2]?.data[1]?._mave?.title}</Typography>
+                <Typography
                     sx={{ fontSize: 16, color: "#7A7A7A", maxWidth: 199 }}
-                  >
-                    dummy.info@mail.com example@mails.com
-                  </Typography>
+                    dangerouslySetInnerHTML={{
+                      __html: data[2]?.data[1]?._mave?.description || "",
+                    }}
+                  />
                 </Stack>
               </Stack>
             </Stack>
             <Stack my={3} direction={{ md: "row", xs: "column" }} spacing={2}>
               <img src={"/assets/contact/number.svg"} width={44} />
               <Stack direction={"column"}>
-                <Typography sx={{ fontSize: 17 }}>Our Number</Typography>
+                <Typography sx={{ fontSize: 17 }}>{data[2]?.data[2]?._mave?.title}</Typography>
                 <Typography
-                  sx={{ fontSize: 16, color: "#7A7A7A", maxWidth: 199 }}
-                >
-                  +1 (234) 567 890 00 +0 (987) 654 321 11
-                </Typography>
+                    sx={{ fontSize: 16, color: "#7A7A7A", maxWidth: 199 }}
+                    dangerouslySetInnerHTML={{
+                      __html: data[2]?.data[2]?._mave?.description || "",
+                    }}
+                  />
               </Stack>
             </Stack>
             <hr
@@ -261,7 +303,7 @@ function contact() {
           ></iframe>
         </Stack>
         {/* FAQ component */}
-        <FaqCom />
+        {/* <FaqCom /> */}
       </Box>
     </>
   );

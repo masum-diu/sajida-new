@@ -445,7 +445,7 @@ function Home() {
       </Box>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 4 }}>
         <FaqCom 
-              event = {data[6]?.data}
+              event = {data[6]?.data} loading={loading}
         />
 
       </Box>
