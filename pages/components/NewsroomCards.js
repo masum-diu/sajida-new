@@ -21,7 +21,7 @@ function NewsroomCards({ image, date, title, description, slug }) {
           alt={title}
           style={{
             width: "100%",
-
+            height: 200,
             objectFit: "cover",
             borderTopLeftRadius: 12,
             borderTopRightRadius: 12,
@@ -40,9 +40,13 @@ function NewsroomCards({ image, date, title, description, slug }) {
         </Typography>
 
         <Typography
-  sx={{ color: "#AAAAAA", fontSize: 16 }}
-  dangerouslySetInnerHTML={{ __html: description || "" }}
-/>
+          sx={{ color: "#AAAAAA", fontSize: 16 }}
+        // dangerouslySetInnerHTML={{ __html: description || "" }}
+        >{description
+          ?.replace(/<[^>]+>/g, '')
+          .split(/\s+/)
+          .slice(0, 15)
+          .join(" ") + "..."}</Typography>
 
 
         <Box mt={2}>

@@ -80,7 +80,7 @@ function contact() {
         <img
           src={`https://sajedabackend.etherstaging.xyz/${data[0]?.data[0]?._mave?.file_path}`}
           width={"100%"}
-          style={{ marginTop: "23px" }}
+          style={{ marginTop: "23px", height: 469, borderRadius: 16, objectFit: "cover" }}
         />
 
         <Typography

@@ -77,18 +77,21 @@ function Testimony({ event }) {
             <Paper
               elevation={0}
               sx={{
-                position: "relative",
                 maxWidth: 412,
                 py: 4,
                 borderRadius: 4,
                 border: "1px solid #EAF0F5",
+                // height:370,
+                // display: "flex",
+                // flexDirection: "column",
+                // justifyContent: "space-between",
               }}
             >
               <Stack alignItems={"center"}>
-                <Avatar   src={`https://sajedabackend.etherstaging.xyz/${event?.media_files?.file_path}`} sx={{ width: 139, height: 139 }} />
+                <Avatar src={`https://sajedabackend.etherstaging.xyz/${event?.media_files?.file_path}`} sx={{ width: 139, height: 139 }} />
               </Stack>
 
-              <Box sx={{ position: "absolute", top: " 7%", right: "25%" }}>
+              <Box>
                 <img src={event.qut} />
               </Box>
 
@@ -101,7 +104,11 @@ function Testimony({ event }) {
                   textAlign: "justify",
                 }}
               >
-                {event.des}
+                {event.description_en
+                    ?.replace(/<[^>]+>/g, '')
+                    .split(/\s+/)
+                    .slice(0, 36)
+                    .join(" ") + "..."}
               </Typography>
               <Stack
                 px={2}
@@ -147,7 +154,7 @@ function Testimony({ event }) {
                     {event.title_en}
                   </Typography>
                   <Typography sx={{ fontSize: 16, color: "#2A6498" }}>
-                    Age: {event.age}
+                    Age: {event.title_bn}
                   </Typography>
                 </Stack>
               </Stack>

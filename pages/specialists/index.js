@@ -153,7 +153,7 @@ function specialistsPage() {
         <img
           src={"/assets/specialist/banner.svg"}
           width={"100%"}
-          style={{ marginTop: "23px" }}
+          style={{ marginTop: "23px", height: 469, borderRadius: 16, objectFit: "cover" }}
         />
 
         <Typography

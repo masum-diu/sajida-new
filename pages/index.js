@@ -25,15 +25,13 @@ import Testimony from "./components/Testimony";
 import { BeatLoader } from "react-spinners";
 import dynamic from "next/dynamic";
 import instance from "./api/api_instance";
-const FaqCom = dynamic(() => import("../pages/components/FaqCom"), {
-  ssr: false,
-});
+import FaqCom from "./components/FaqCom";
+
 function Home() {
   const router = useRouter();
   const [data, setData] = useState([]);
-  console.log(data);
   const [loading, setLoading] = useState(false);
-
+console.log(data,"home")
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -281,10 +279,10 @@ function Home() {
           title1={data[3]?.data[2]?._mave?.title}
           title2={data[3]?.data[2]?._mave?.altTitle}
           subtitle1={data[3]?.data[2]?._mave?.description}
-          subtitle2={data[3]?.data[2]?._mave?.altDescription}
-          description={
-            data[3]?.data[2]?._mave?.altDescription
-          }
+          // subtitle2={data[3]?.data[2]?._mave?.altDescription}
+          // description={
+          //   data[3]?.data[2]?._mave?.altDescription
+          // }
           image3={"/assets/about/mission.svg"}
           title3={data[3]?.data[3]?._mave?.title}
           des1={
@@ -315,8 +313,8 @@ function Home() {
           <Grid container spacing={2} py={6}>
             {serviceCard.slice(0, 8).map((item, index) => (
               <Grid size={{ xs: 12, md: 3 }} key={index}>
-                <ServiceCards {...item} slug={item.slug} />
-              </Grid>
+                <ServiceCards {...item} slug={item.slug} index={index} />
+              </Grid> 
             ))}
           </Grid>
         </Box>

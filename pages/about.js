@@ -148,15 +148,15 @@ function about() {
         <img
           src={`https://sajedabackend.etherstaging.xyz/${data[0]?.data[0]?._mave?.file_path}`}
           width={"100%"}
-          style={{ marginTop: "23px" }}
+          style={{ marginTop: "23px", height: 469, borderRadius: 16, objectFit: "cover" }}
         />
 
         <AboutHeroSection
           image1={`https://sajedabackend.etherstaging.xyz/${data[1]?.data[0]?._mave?.file_path}`}
           image2={`https://sajedabackend.etherstaging.xyz/${data[1]?.data[1]?._mave?.file_path}`}
           title1={data[1]?.data[2]?._mave?.title}
-          title2={data[1]?.data[2]?._mave?.description}
-          subtitle1={""}
+          title2={data[1]?.data[2]?._mave?.altTitle}
+          subtitle1={data[1]?.data[2]?._mave?.description}
           subtitle2={"Healthcare"}
           description={data[1]?.data[2]?._mave?.altDescription}
           image3={"/assets/about/mission.svg"}
@@ -283,23 +283,18 @@ function about() {
                 {/* sajida Hospiat story */}
                 <Typography
                   sx={{ color: "#0D5EAE", fontSize: 36, fontWeight: 700 }}
-                  dangerouslySetInnerHTML={{
-                    __html: data[3]?.data[0]?._mave?.title,
-                  }}
-                />
+
+                >{data[3]?.data[0]?._mave?.title}</Typography>
                 <Typography
                   sx={{ color: "#222222", fontSize: 28 }}
-                  dangerouslySetInnerHTML={{
-                    __html: data[3]?.data[0]?._mave?.description,
-                  }}
-                />
-
+                >{data[3]?.data[0]?._mave?.description.replace(/<[^>]+>/g, '')}
+                </Typography>
                 <Typography
                   sx={{
                     color: "#222222",
                     fontSize: 16,
                     textAlign: "justify",
-                    mt: 6,
+
                     width: "100%",
                   }}
                   dangerouslySetInnerHTML={{
@@ -323,7 +318,7 @@ function about() {
             <Grid size={{ xs: 12, md: 6 }}>
               <img
                 src={`https://sajedabackend.etherstaging.xyz/${data[3]?.data[1]?._mave?.file_path}`}
-                style={{ width: "100%", maxWidth: 873 }}
+                style={{ width: "100%", height: 582, borderRadius: 24, objectFit: "cover" }}
               />
             </Grid>
           </Grid>
@@ -341,12 +336,12 @@ function about() {
             <Typography fontSize={36} fontWeight={700} color="#0D5EAE">
               {data[4]?.data[0]?._mave?.title}
             </Typography>
-            <Typography
-              fontSize={28}
-              dangerouslySetInnerHTML={{
-                __html: data[4]?.data[0]?._mave?.description,
-              }}
-            />
+             <Typography fontSize={28}>
+              {data[4]?.data[0]?._mave?.description.replace(/<[^>]+>/g, "")
+                .replace(/&amp;/g, "&")
+              }
+            </Typography>
+           
           </Stack>
           <Stack
             direction="row"
@@ -420,7 +415,9 @@ function about() {
               {data[5]?.data[0]?._mave?.title}
             </Typography>
             <Typography fontSize={28}>
-              {data[5]?.data[1]?._mave?.description}
+              {data[5]?.data[0]?._mave?.description.replace(/<[^>]+>/g, "")
+                .replace(/&amp;/g, "&")
+              }
             </Typography>
           </Stack>
           <Stack
@@ -466,14 +463,15 @@ function about() {
             // "/assets/about/award.svg",
             // "/assets/about/award.svg",
             // "/assets/about/award.svg",
-           data[5]?.data[1]?._mave?.medias?.map((item, index) => (
-    <SwiperSlide key={index}>
-      <img
-        src={`https://sajedabackend.etherstaging.xyz/${item.file_path}`}
-        width="100%"
-        alt={item.title || `slide-${index}`}
-      />
-    </SwiperSlide>
+            data[5]?.data[1]?._mave?.medias?.map((item, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={`https://sajedabackend.etherstaging.xyz/${item.file_path}`}
+                  width="100%"
+                  alt={item.title || `slide-${index}`}
+                  style={{ borderRadius: 16, }}
+                />
+              </SwiperSlide>
             ))
           }
         </Swiper>

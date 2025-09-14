@@ -12,8 +12,7 @@ import {
 } from "@mui/material";
 import { BeatLoader } from "react-spinners";
 
-function FaqCom({ event ,loading}) {
-  // Q&A data
+function FaqCom({ event, loading }) {
   const faqs = [
     {
       q: "How do I make an appointment at Meddic?",
@@ -36,22 +35,11 @@ function FaqCom({ event ,loading}) {
   const [expanded, setExpanded] = useState(null);
   const toggle = (index) =>
     setExpanded((prev) => (prev === index ? null : index));
-  
-  if (loading) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          flexDirection: "column",
-        }}
-      >
-        <BeatLoader color="#191919" size={30} />
-      </Box>
-    );
-  }
+
+  if (!event || event.length < 3) {
+  return <BeatLoader color="#191919" size={30} />;
+}
+
 
   return (
     <>
@@ -59,19 +47,25 @@ function FaqCom({ event ,loading}) {
         {/* first grid */}
         <Grid size={{ md: 5, xs: 12 }}>
           <img
-            src={`https://sajedabackend.etherstaging.xyz/${event[2]?._mave?.file_path}`}
+            src={
+              event?.[2]?._mave?.file_path
+                ? `https://sajedabackend.etherstaging.xyz/${event[2]._mave.file_path}`
+                : "/fallback-image.jpg"
+            }
             width="100%"
             alt="FAQ"
+            style={{ borderRadius: 10 }}
           />
+
         </Grid>
 
         {/* second grid */}
         <Grid size={{ md: 7, xs: 12 }}>
           <Typography sx={{ fontSize: 36, color: "#2A6498", fontWeight: 700 }}>
-            {event[1]?._mave?.title}
+            {event[1]?._mave?.title|| ""}
           </Typography>
           <Typography sx={{ fontSize: 28 }}>
-            {event[1]?._mave?.altTitle}
+            {event[1]?._mave?.altTitle|| ""}
           </Typography>
           <Typography
             sx={{
@@ -108,7 +102,7 @@ function FaqCom({ event ,loading}) {
                   expanded={isOpen}
                   onChange={() => toggle(i)}
                   sx={{
-                    "&::before": { display: "none" }, 
+                    "&::before": { display: "none" },
                     borderBottom:
                       i === faqs.length - 1 ? "none" : "1px solid #E7ECF2",
                   }}

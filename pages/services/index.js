@@ -170,7 +170,7 @@ function servicePage() {
         <img
           src={`https://sajedabackend.etherstaging.xyz/${data[0]?.data[0]?._mave?.file_path}`}
           width={"100%"}
-          style={{ marginTop: "23px" }}
+          style={{ marginTop: "23px", height: 469, borderRadius: 16, objectFit: "cover" }}
         />
         {/* First Section */}
         <Grid container spacing={8} mt={8}>
@@ -184,16 +184,16 @@ function servicePage() {
               </Typography>
               <Typography
                 sx={{ color: "#222222", fontSize: 28 }}
-                dangerouslySetInnerHTML={{
-                  __html: data[1]?.data[0]?._mave?.description,
-                }}
-              />
+                // dangerouslySetInnerHTML={{
+                //   __html: data[1]?.data[0]?._mave?.description,
+                // }}
+              >{data[1]?.data[0]?._mave?.description.replace(/<[^>]+>/g, '')}</Typography>
               <Typography
                 sx={{
                   color: "#222222",
                   fontSize: 16,
                   textAlign: "justify",
-                  mt: 6,
+                  // mt: 6,
                   width: "100%",
                   maxWidth: 954,
                 }}
@@ -228,13 +228,13 @@ function servicePage() {
               <Grid size={{ xs: 12, md: 6 }} mt={{ lg: 4, xl: 5 }}>
                 <img
                   src={`https://sajedabackend.etherstaging.xyz/${data[1]?.data[1]?._mave?.file_path}`}
-                  style={{ width: "100%", maxWidth: 350, borderRadius: 16 }}
+                  style={{ width: "100%", maxWidth: 350, borderRadius: 16, height: 565, objectFit: "cover" }}
                 />
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
                 <img
                   src={`https://sajedabackend.etherstaging.xyz/${data[1]?.data[2]?._mave?.file_path}`}
-                  style={{ width: "100%", maxWidth: 350, borderRadius: 16 }}
+                  style={{ width: "100%", maxWidth: 350, borderRadius: 16, height: 565, objectFit: "cover" }}
                 />
               </Grid>
             </Grid>
@@ -251,13 +251,13 @@ function servicePage() {
               <Grid size={{ xs: 12, md: 6 }}>
                 <img
                   src={`https://sajedabackend.etherstaging.xyz/${data[2]?.data[0]?._mave?.file_path}`}
-                  style={{ width: "100%", maxWidth: 350, borderRadius: 16 }}
+                  style={{ width: "100%", maxWidth: 350, borderRadius: 16, height: 565, objectFit: "cover" }}
                 />
               </Grid>
               <Grid size={{ xs: 12, md: 6 }} mt={{ lg: 4, xl: 5 }}>
                 <img
                   src={`https://sajedabackend.etherstaging.xyz/${data[2]?.data[1]?._mave?.file_path}`}
-                  style={{ width: "100%", maxWidth: 350, borderRadius: 16 }}
+                  style={{ width: "100%", maxWidth: 350, borderRadius: 16, height: 565, objectFit: "cover" }}
                 />
               </Grid>
             </Grid>
@@ -272,17 +272,17 @@ function servicePage() {
               </Typography>
               <Typography
                 sx={{ color: "#222222", fontSize: 28 }}
-                dangerouslySetInnerHTML={{
-                  __html: data[2]?.data[2]?._mave?.description,
-                }}
-              />
+                // dangerouslySetInnerHTML={{
+                //   __html: data[2]?.data[2]?._mave?.description,
+                // }}
+              >{data[2]?.data[2]?._mave?.description.replace(/<[^>]+>/g, '')}</Typography>
 
               <Typography
                 sx={{
                   color: "#222222",
                   fontSize: 16,
                   textAlign: "justify",
-                  mt: 6,
+                  // mt: 6,
                   width: "100%",
                   maxWidth: 954,
                 }}
@@ -291,23 +291,7 @@ function servicePage() {
                 }}
               />
 
-              <Typography
-                sx={{
-                  color: "#222222",
-                  fontSize: 16,
-                  textAlign: "justify",
-                  mt: 2,
-                  width: "100%",
-                  maxWidth: 954,
-                }}
-              >
-                The organisation has come a long way since its humble beginnings
-                in 1993 when it was presented as a gift by our Founder, Syed
-                Humayun Kabir, to the patron Sajida Humayun Kabir to mark their
-                25th wedding anniversary. Syed Humayun Kabir served as SAJIDA’s
-                Chairperson for almost two decades and also as board member of
-                Renata Limited.
-              </Typography>
+              
             </Stack>
           </Grid>
         </Grid>
@@ -315,17 +299,17 @@ function servicePage() {
         <Typography
           sx={{ color: "#0D5EAE", fontSize: 36, fontWeight: 700, mt: 5 }}
         >
-            {data[3]?.data[0]?._mave?.title}
+          {data[3]?.data[0]?._mave?.title}
         </Typography>
-      <Typography
-  sx={{ color: "#222222", fontSize: 28 }}
-  dangerouslySetInnerHTML={{
-    __html: data[3]?.data[0]?._mave?.description,
-  }}
-/>
+        <Typography
+          sx={{ color: "#222222", fontSize: 28 }}
+          // dangerouslySetInnerHTML={{
+          //   __html: data[3]?.data[0]?._mave?.description,
+          // }}
+        >{data[3]?.data[0]?._mave?.description.replace(/<[^>]+>/g, '')}</Typography>
 
 
-        <Grid container spacing={3} py={10}>
+        <Grid container spacing={3}  mt={2} mb={6}>
           {serviceCard.map((service, index) => (
             <Grid size={{ md: 3, xs: 12 }} key={index}>
               <ServiceCards {...service} slug={service.slug} />

@@ -186,26 +186,26 @@ function newsroomPage() {
           </Grid>
         </Grid>
 
-        <Typography sx={{ fontSize: 28, mt: 6 }}>All News & Blogs</Typography>
+        <Typography sx={{ fontSize: 28, mt: 6, mb: 2 }}>All News & Blogs</Typography>
         <Grid container spacing={2} mb={6}>
-  
-  {Array.isArray(data[1]?.data) &&
-    data[1].data.map((item, index) => (
-      <Grid item key={index} md={3} xs={12}>
-        <NewsroomCards
-          image={
-            item._mave?.media_files?.file_path
-              ? `https://sajedabackend.etherstaging.xyz/${item._mave.media_files.file_path}`
-              : "/assets/stories/people.svg"
-          }
-          title={item._mave?.title_en || ""}
-          date={item._mave?.updated_at || ""}
-          description={item._mave?.description_en || ""}
-          slug={item._mave?.id?.toString() || ""}
-        />
-      </Grid>
-    ))}
-</Grid>
+
+          {Array.isArray(data[1]?.data[0]?._mave?.cards
+          ) &&
+            data[1]?.data[0]?._mave?.cards.map((item, index) => (
+              <Grid item key={index} md={3} xs={12}>
+                <NewsroomCards
+                  image={
+                    item?.media_files?.file_path
+                      ? `https://sajedabackend.etherstaging.xyz/${item?.media_files.file_path}`
+                      : "/assets/stories/people.svg"
+                  }
+                  title={item?.title_en || ""}
+                  description={item?.description_en || ""}
+
+                />
+              </Grid>
+            ))}
+        </Grid>
       </Box>
     </>
   );

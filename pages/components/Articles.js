@@ -67,6 +67,7 @@ function Articles({ event, headingSubTitle, headingTitle }) {
                 borderRadius: 5,
                 position: "relative",
                 maxWidth: 412,
+                // height: 360,
                 mt: 3,
                 mb: 1,
               }}
@@ -76,7 +77,7 @@ function Articles({ event, headingSubTitle, headingTitle }) {
                 label={event?.title_en}
                 sx={{
                   position: "absolute",
-                  top: " 42%",
+                  top: 42,
                   right: 0,
                   bgcolor: "#12A551",
                   color: "#fff",
@@ -97,6 +98,7 @@ function Articles({ event, headingSubTitle, headingTitle }) {
                     objectFit: "cover",
                     borderTopLeftRadius: 20,
                     borderTopRightRadius: 20,
+                    height: 200,
                   }}
                 />
               </Box>
@@ -105,12 +107,13 @@ function Articles({ event, headingSubTitle, headingTitle }) {
               <Box sx={{ p: 2 }}>
                 <Typography
                   variant="body2"
-                  sx={{ fontWeight: 600, fontSize: 16, color: "#2A6498" }}
+                  sx={{ fontWeight: 600, fontSize: 16, color: "#2A6498", }}
                 >
-                  <span
-                    dangerouslySetInnerHTML={{ __html: event.description_en }}
-                    style={{ color: "#2A6498" }}
-                  />
+                  {event.description_en
+                    ?.replace(/<[^>]+>/g, '')
+                    .split(/\s+/)
+                    .slice(0, 12)
+                    .join(" ") + "..."}
                 </Typography>
               </Box>
             </Paper>

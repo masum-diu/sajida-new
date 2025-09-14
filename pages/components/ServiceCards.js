@@ -7,11 +7,11 @@ function ServiceCards({ iconItem: IconComponent, title, des, btn, slug }) {
     <Box
       sx={{
         position: "relative",
-        width:"100%",
+        width: "100%",
         maxWidth: 412,
         height: 291,
         borderRadius: "26px",
-        border:"1px solid #EAF0F5",
+        border: "1px solid #EAF0F5",
         overflow: "hidden",
         backgroundColor: "#ffffff",
         transition: "background-color 0.3s ease",
