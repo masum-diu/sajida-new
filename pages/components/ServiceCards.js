@@ -1,8 +1,20 @@
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
-
-function ServiceCards({ iconItem: IconComponent, title, des, btn, slug }) {
+import LocalHospitalOutlinedIcon from "@mui/icons-material/LocalHospitalOutlined";
+import BloodtypeOutlinedIcon from "@mui/icons-material/BloodtypeOutlined";
+import BiotechOutlinedIcon from "@mui/icons-material/BiotechOutlined";
+import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
+import AccessibilityNewOutlinedIcon from "@mui/icons-material/AccessibilityNewOutlined";
+function ServiceCards({ iconItem, title, des, btn, slug }) {
+  const icons = {
+    LocalHospitalOutlined: LocalHospitalOutlinedIcon,
+    BloodtypeOutlined: BloodtypeOutlinedIcon,
+    BiotechOutlined: BiotechOutlinedIcon,
+    ChildCareOutlined: ChildCareOutlinedIcon,
+    AccessibilityNewOutlined: AccessibilityNewOutlinedIcon,
+  };
+  const IconComponent = icons[iconItem];
   return (
     <Box
       sx={{

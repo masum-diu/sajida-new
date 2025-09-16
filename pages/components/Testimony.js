@@ -23,7 +23,7 @@ function Testimony({ event }) {
     380: { slidesPerView: 1, spaceBetween: 15 },
     600: { slidesPerView: 2, spaceBetween: 20 },
     900: { slidesPerView: 3, spaceBetween: 10 },
-    1200: { slidesPerView: 3.5, spaceBetween: 10 },
+    1200: { slidesPerView: 3, spaceBetween: 10 },
     1920: { slidesPerView: 4, spaceBetween: 10 },
   };
   return (
@@ -81,10 +81,10 @@ function Testimony({ event }) {
                 py: 4,
                 borderRadius: 4,
                 border: "1px solid #EAF0F5",
-                // height:370,
-                // display: "flex",
-                // flexDirection: "column",
-                // justifyContent: "space-between",
+                 height:400,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
               }}
             >
               <Stack alignItems={"center"}>
@@ -153,9 +153,9 @@ function Testimony({ event }) {
                   >
                     {event.title_en}
                   </Typography>
-                  <Typography sx={{ fontSize: 16, color: "#2A6498" }}>
+                  {/* <Typography sx={{ fontSize: 16, color: "#2A6498" }}>
                     Age: {event.title_bn}
-                  </Typography>
+                  </Typography> */}
                 </Stack>
               </Stack>
             </Paper>

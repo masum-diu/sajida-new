@@ -9,9 +9,13 @@ function NewsroomCards({ image, date, title, description, slug }) {
       sx={{
         borderRadius: 4,
         overflow: "hidden",
-        maxWidth: 412,
+       maxWidth: 412,
         boxShadow: "0px 2px 10px rgba(0,0,0,0.05)",
         width: "100%",
+        height: 400,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
       }}
     >
       {/* Image */}
@@ -25,6 +29,7 @@ function NewsroomCards({ image, date, title, description, slug }) {
             objectFit: "cover",
             borderTopLeftRadius: 12,
             borderTopRightRadius: 12,
+            objectPosition:"top"
           }}
         />
       </Box>
@@ -45,7 +50,7 @@ function NewsroomCards({ image, date, title, description, slug }) {
         >{description
           ?.replace(/<[^>]+>/g, '')
           .split(/\s+/)
-          .slice(0, 15)
+          .slice(0, 12)
           .join(" ") + "..."}</Typography>
 
 

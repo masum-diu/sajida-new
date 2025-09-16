@@ -1,23 +1,55 @@
 import { Box, IconButton, Paper, Stack, Typography } from "@mui/material";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
 import SpecialistCard from "./SpecialistCard";
+
 function Dep_Doctor_bodyparts() {
+  const [doctors, setDoctors] = useState([]);
+  const [doctorsprofile, setDoctorsprofile] = useState([]);
+  console.log(doctorsprofile)
+  const [selectedDep, setSelectedDep] = useState(null);
+
+  useEffect(() => {
+    fetch("/doctors.json")
+      .then(res => res.json())
+      .then(data => {
+        setDoctors(data);
+        if (data && data.length > 0) {
+          setDoctorsprofile(data[0].doctors || []);
+          setSelectedDep(data[0].department); // auto select first
+        }
+      });
+  }, []);
+
+  const handeler = (dep) => {
+    const department = doctors.find(d => d.department === dep);
+    if (department && department.doctors) {
+      setDoctorsprofile(department.doctors);
+    } else {
+      setDoctorsprofile([]);
+    }
+    setSelectedDep(dep);
+  };
+
+
+
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const prevRef1 = useRef(null);
   const nextRef1 = useRef(null);
+
   const breakpoints = {
     0: { slidesPerView: 1, spaceBetween: 10 },
     380: { slidesPerView: 1, spaceBetween: 15 },
     600: { slidesPerView: 2, spaceBetween: 20 },
     900: { slidesPerView: 3, spaceBetween: 10 },
-    1200: { slidesPerView: 4, spaceBetween: 10 },
-    1920: { slidesPerView: 5, spaceBetween: 10 },
+    1200: { slidesPerView: 3, spaceBetween: 10 },
+    1920: { slidesPerView: 4, spaceBetween: 10 },
   };
+
   const breakpoint = {
     0: { slidesPerView: 1, spaceBetween: 10 },
     380: { slidesPerView: 1, spaceBetween: 15 },
@@ -26,104 +58,9 @@ function Dep_Doctor_bodyparts() {
     1200: { slidesPerView: 2, spaceBetween: 10 },
     1920: { slidesPerView: 3, spaceBetween: 20 },
   };
-  const specialistItems = [
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Akter ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-Akter",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-    {
-      cardImg: "/assets/specialist/cardimg.svg",
-      title: "Dr. Shaila Sabrin ",
-      des: "Chief Dietitian",
-      dig: "MBBS, MD (Cardiology)",
-      btn: "View Profile",
-      slug: "dr-shaila-sabrin",
-    },
-  ];
+
+
+
   return (
     <>
       <Stack direction={"column"} spacing={1}>
@@ -132,10 +69,10 @@ function Dep_Doctor_bodyparts() {
         </Typography>
         <Typography fontSize={28}>Our Doctors Team</Typography>
       </Stack>
+
       <Stack
         mt={2}
         direction="row"
-        // spacing={1}
         justifyContent={"space-between"}
         alignItems={"center"}
         mb={1}
@@ -165,6 +102,7 @@ function Dep_Doctor_bodyparts() {
           </IconButton>
         </Stack>
       </Stack>
+
       <Swiper
         style={{ marginTop: 20, marginBottom: 20 }}
         breakpoints={breakpoints}
@@ -179,28 +117,21 @@ function Dep_Doctor_bodyparts() {
           swiper.navigation?.init();
           swiper.navigation?.update();
         }}
-        // spaceBetween={10}
         pagination={{
           clickable: true,
         }}
         className="mySwiper"
       >
-        {[
-          { icons: "/assets/cadorly.svg", title: "Cardiology" },
-          { icons: "/assets/cadorly.svg", title: "Cardiology" },
-          { icons: "/assets/cadorly.svg", title: "Cardiology" },
-          { icons: "/assets/cadorly.svg", title: "Cardiology" },
-          { icons: "/assets/cadorly.svg", title: "Cardiology" },
-          { icons: "/assets/cadorly.svg", title: "Cardiology" },
-          { icons: "/assets/cadorly.svg", title: "Cardiology" },
-        ].map((item, index) => (
-          <SwiperSlide key={index}>
+        {doctors?.map((item, index) => (
+          <SwiperSlide key={index} style={{ cursor: "pointer" }} onClick={() => handeler(item?.department)}>
             <Paper
               elevation={0}
               sx={{
                 maxWidth: 322,
                 borderRadius: "16px",
                 border: "1px solid #EAF0F5",
+                backgroundColor: selectedDep === item?.department ? "#2A6498" : "#FFFFFF",
+                color: selectedDep === item?.department ? "#FFFFFF" : "inherit",
               }}
             >
               <Stack
@@ -210,20 +141,19 @@ function Dep_Doctor_bodyparts() {
                 alignItems={"center"}
                 height={83}
               >
-                <img src={item.icons} width={55} />
-                <Typography variant="body1" color="initial">
-                  {item.title}
+                <img src="/assets/cadorly.svg" width={55} alt="department icon" />
+                <Typography variant="body1" >
+                  {item?.department}
                 </Typography>
               </Stack>
             </Paper>
           </SwiperSlide>
         ))}
+
       </Swiper>
 
       <Stack
-        // mt={2}
         direction="row"
-        // spacing={1}
         justifyContent={"space-between"}
         alignItems={"center"}
         mb={1}
@@ -253,6 +183,7 @@ function Dep_Doctor_bodyparts() {
           </IconButton>
         </Stack>
       </Stack>
+
       <Swiper
         style={{ marginTop: 20 }}
         breakpoints={breakpoint}
@@ -267,17 +198,29 @@ function Dep_Doctor_bodyparts() {
           swiper.navigation?.init();
           swiper.navigation?.update();
         }}
-        // spaceBetween={10}
         pagination={{
           clickable: true,
         }}
         className="mySwiper"
       >
-        {specialistItems.map((item, index) => (
-          <SwiperSlide key={index}>
-            <SpecialistCard {...item} />
-          </SwiperSlide>
-        ))}
+        {doctorsprofile?.map((item, index) => {
+          console.log(item)
+          return (
+            <SwiperSlide key={index}>
+              <SpecialistCard
+                title={item?.name}
+                // Pass other necessary props to SpecialistCard
+                cardImg={item?.image || "/assets/images.png"}
+                des={item?.designation.slice(0, 20)}
+                dig={item?.qualifications}
+                btn="View Profile"
+                slug={item?.slug || `doctor-${index}`}
+                department={item?.department}
+
+              />
+            </SwiperSlide>
+          )
+        })}
       </Swiper>
     </>
   );

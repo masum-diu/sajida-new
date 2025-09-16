@@ -42,92 +42,7 @@ function newsroomPage() {
     );
   }
 
-  const newsroomItems = [
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-    {
-      image: "/assets/stories/people.svg",
-      date: "SEPTEMBER 28, 2024",
-      title: "Can creatine supplements help people",
-      description: "Lorem Ipsum is simply dummy text...",
-      slug: "creatine-supplements",
-    },
-  ];
+ 
 
   const router = useRouter();
   return (
@@ -159,7 +74,7 @@ function newsroomPage() {
 
         <Typography
           my={4}
-          sx={{ fontSize: 32, fontWeight: 700, color: "#2A6498" }}
+          sx={{ fontSize: {md:32,xs:18}, fontWeight: 700, color: "#2A6498" }}
         >
           {data[0]?.data[0]?.value}
         </Typography>
@@ -192,7 +107,7 @@ function newsroomPage() {
           {Array.isArray(data[1]?.data[0]?._mave?.cards
           ) &&
             data[1]?.data[0]?._mave?.cards.map((item, index) => (
-              <Grid item key={index} md={3} xs={12}>
+              <Grid item key={index} size={{ xs: 12, md: 4, xl: 3 }}>
                 <NewsroomCards
                   image={
                     item?.media_files?.file_path

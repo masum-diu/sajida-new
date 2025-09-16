@@ -15,7 +15,7 @@ function Header() {
   };
   const handleClose = (lang) => {
     if (lang) {
-      console.log('Selected Language:', lang);
+      // console.log('Selected Language:', lang);
     }
     setAnchorEl(null);
   };
@@ -291,9 +291,9 @@ function Header() {
           <Divider />
           <MenuItem onClick={() => { router.push("/stories"); setOpen(false) }} sx={{ p: 0, fontWeight: 700 }}>Case Stories</MenuItem>
           <Divider />
-          <MenuItem sx={{ p: 0, fontWeight: 700 }}>Newsroom</MenuItem>
+          <MenuItem onClick={() => { router.push("/newsroom"); setOpen(false) }} sx={{ p: 0, fontWeight: 700 }}>Newsroom</MenuItem>
           <Divider />
-          <MenuItem sx={{ p: 0, fontWeight: 700 }}>Contact Us</MenuItem>
+          <MenuItem onClick={() => { router.push("/contact");setOpen(false) }} sx={{ p: 0, fontWeight: 700 }}>Contact Us</MenuItem>
           <Divider />
           <MenuItem sx={{ p: 0, fontWeight: 700 }} onClick={() => {
             setSearchOpen(true)

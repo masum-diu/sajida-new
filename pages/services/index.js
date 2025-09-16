@@ -21,7 +21,7 @@ import { BeatLoader } from "react-spinners";
 function servicePage() {
   const router = useRouter();
   const [data, setData] = useState([]);
-  console.log("about", data);
+const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -39,7 +39,13 @@ function servicePage() {
   useEffect(() => {
     fetchData();
   }, []);
+ 
 
+  useEffect(() => {
+    fetch("/services.json")
+      .then(res => res.json())
+      .then(data => setServices(data));
+  }, []);
   if (loading) {
     return (
       <Box
@@ -56,98 +62,13 @@ function servicePage() {
     );
   }
 
-  const serviceCard = [
-    {
-      iconItem: MedicationOutlinedIcon,
-      title: "Pharmacy Service",
-      des: "Prescription and OTC medicines provided with professional guidance.",
-      btn: "Learn More",
-      slug: "pharmacy-service",
-    },
-    {
-      iconItem: MedicalInformationOutlinedIcon,
-      title: "Medical Specialist",
-      des: "Connect with expert doctors across all major specializations.",
-      btn: "Learn More",
-      slug: "medical-specialist",
-    },
-    {
-      iconItem: BiotechOutlinedIcon,
-      title: "Diagnostic Services",
-      des: "Lab and imaging tests for accurate medical diagnosis.",
-      btn: "Learn More",
-      slug: "diagnostic-services",
-    },
-    {
-      iconItem: AirlineSeatFlatAngledOutlinedIcon,
-      title: "General Surgery",
-      des: "Expert surgical procedures with compassionate post-op care.",
-      btn: "Learn More",
-      slug: "general-surgery",
-    },
-    {
-      iconItem: AccessibilityNewOutlinedIcon,
-      title: "Orthopedic",
-      des: "Bone and joint care including sports injuries and arthritis.",
-      btn: "Learn More",
-      slug: "orthopedic",
-    },
-    {
-      iconItem: ChildCareOutlinedIcon,
-      title: "Mother and Child Care",
-      des: "Maternity, neonatal, and pediatric care under one roof.",
-      btn: "Learn More",
-      slug: "mother-child-care",
-    },
-    {
-      iconItem: LocalHospitalOutlinedIcon,
-      title: "Hospital Services",
-      des: "24/7 emergency, inpatient, and surgical hospital support.",
-      btn: "Learn More",
-      slug: "hospital-services",
-    },
-    {
-      iconItem: HealthAndSafetyOutlinedIcon,
-      title: "Health and Safety",
-      des: "Wellness checkups and workplace safety consultations.",
-      btn: "Learn More",
-      slug: "health-safety",
-    },
-    {
-      iconItem: VaccinesOutlinedIcon,
-      title: "Vaccination",
-      des: "Routine and travel vaccines for all age groups.",
-      btn: "Learn More",
-      slug: "vaccination",
-    },
-    {
-      iconItem: BloodtypeOutlinedIcon,
-      title: "Blood Services",
-      des: "Safe blood donation, screening, and transfusion support.",
-      btn: "Learn More",
-      slug: "blood-services",
-    },
-    {
-      iconItem: PsychologyOutlinedIcon,
-      title: "Mental Health",
-      des: "Confidential therapy, counseling, and mental wellness care.",
-      btn: "Learn More",
-      slug: "mental-health",
-    },
-    {
-      iconItem: MedicalServicesOutlinedIcon,
-      title: "General Checkup",
-      des: "Routine health screening for disease prevention and wellness.",
-      btn: "Learn More",
-      slug: "general-checkup",
-    },
-  ];
+
 
   return (
     <>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
         <Stack justifyContent={"center"} alignItems={"center"}>
-          <Typography sx={{ fontSize: 60, fontWeight: 500 }}>
+          <Typography sx={{ fontSize: {md:60,xs:40}, fontWeight: 500 }}>
             Our <span style={{ color: "#12A551" }}>Services</span>
           </Typography>
           <Stack direction={"row"} spacing={1}>
@@ -202,7 +123,7 @@ function servicePage() {
                 }}
               />
 
-              <Typography
+              {/* <Typography
                 sx={{
                   color: "#222222",
                   fontSize: 16,
@@ -218,7 +139,7 @@ function servicePage() {
                 25th wedding anniversary. Syed Humayun Kabir served as SAJIDA’s
                 Chairperson for almost two decades and also as board member of
                 Renata Limited.
-              </Typography>
+              </Typography> */}
             </Stack>
           </Grid>
           {/* second grid */}
@@ -243,10 +164,10 @@ function servicePage() {
 
         {/* Second Section */}
 
-        <Grid container spacing={8} mt={8}>
-          {/* first grid */}
+        {/* <Grid container spacing={8} mt={8}>
+
           <Grid size={{ md: 6, xs: 12 }}>
-            {/* images */}
+   
             <Grid container spacing={4}>
               <Grid size={{ xs: 12, md: 6 }}>
                 <img
@@ -262,7 +183,7 @@ function servicePage() {
               </Grid>
             </Grid>
           </Grid>
-          {/* second grid */}
+         
           <Grid size={{ md: 6, xs: 12 }}>
             <Stack>
               <Typography
@@ -272,9 +193,7 @@ function servicePage() {
               </Typography>
               <Typography
                 sx={{ color: "#222222", fontSize: 28 }}
-                // dangerouslySetInnerHTML={{
-                //   __html: data[2]?.data[2]?._mave?.description,
-                // }}
+              
               >{data[2]?.data[2]?._mave?.description.replace(/<[^>]+>/g, '')}</Typography>
 
               <Typography
@@ -294,7 +213,7 @@ function servicePage() {
               
             </Stack>
           </Grid>
-        </Grid>
+        </Grid> */}
         {/* Our service section */}
         <Typography
           sx={{ color: "#0D5EAE", fontSize: 36, fontWeight: 700, mt: 5 }}
@@ -310,11 +229,11 @@ function servicePage() {
 
 
         <Grid container spacing={3}  mt={2} mb={6}>
-          {serviceCard.map((service, index) => (
-            <Grid size={{ md: 3, xs: 12 }} key={index}>
-              <ServiceCards {...service} slug={service.slug} />
-            </Grid>
-          ))}
+          {services?.map((item, index) => (
+              <Grid size={{ xs: 12, md: 3 }} key={index}>
+                <ServiceCards title={item.title} des={item.description} btn={item.button} iconItem={item.icon} slug={item.slug} index={index} />
+              </Grid>
+            ))}
         </Grid>
       </Box>
     </>

@@ -13,7 +13,7 @@ function Articles({ event, headingSubTitle, headingTitle }) {
     380: { slidesPerView: 1, spaceBetween: 15 },
     600: { slidesPerView: 2, spaceBetween: 20 },
     900: { slidesPerView: 3, spaceBetween: 10 },
-    1200: { slidesPerView: 3.5, spaceBetween: 10 },
+    1200: { slidesPerView: 3, spaceBetween: 10 },
     1920: { slidesPerView: 4, spaceBetween: 10 },
   };
   return (
@@ -67,7 +67,7 @@ function Articles({ event, headingSubTitle, headingTitle }) {
                 borderRadius: 5,
                 position: "relative",
                 maxWidth: 412,
-                // height: 360,
+                height: 300,
                 mt: 3,
                 mb: 1,
               }}
@@ -112,7 +112,7 @@ function Articles({ event, headingSubTitle, headingTitle }) {
                   {event.description_en
                     ?.replace(/<[^>]+>/g, '')
                     .split(/\s+/)
-                    .slice(0, 12)
+                    .slice(0, 10)
                     .join(" ") + "..."}
                 </Typography>
               </Box>

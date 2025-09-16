@@ -58,7 +58,7 @@ function contact() {
     <>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
         <Stack justifyContent={"center"} alignItems={"center"}>
-          <Typography sx={{ fontSize: 60, fontWeight: 500 }}>
+          <Typography sx={{ fontSize: {md:60,xs:40}, fontWeight: 500 }}>
             Contact <span style={{ color: "#12A551" }}>Room</span>
           </Typography>
           <Stack direction={"row"} spacing={1}>

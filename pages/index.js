@@ -4,18 +4,7 @@ import SwiperCard from "./components/SwiperCard";
 import ConteactItemCard from "./components/ConteactItemCard";
 import AboutHeroSection from "./components/AboutHeroSection";
 import { useRouter } from "next/router";
-import MedicationOutlinedIcon from "@mui/icons-material/MedicationOutlined";
-import MedicalInformationOutlinedIcon from "@mui/icons-material/MedicalInformationOutlined";
-import BiotechOutlinedIcon from "@mui/icons-material/BiotechOutlined";
-import AirlineSeatFlatAngledOutlinedIcon from "@mui/icons-material/AirlineSeatFlatAngledOutlined";
-import AccessibilityNewOutlinedIcon from "@mui/icons-material/AccessibilityNewOutlined";
-import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
-import LocalHospitalOutlinedIcon from "@mui/icons-material/LocalHospitalOutlined";
-import HealthAndSafetyOutlinedIcon from "@mui/icons-material/HealthAndSafetyOutlined";
-import VaccinesOutlinedIcon from "@mui/icons-material/VaccinesOutlined";
-import BloodtypeOutlinedIcon from "@mui/icons-material/BloodtypeOutlined";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import MedicalServicesOutlinedIcon from "@mui/icons-material/MedicalServicesOutlined";
+
 import ServiceCards from "./components/ServiceCards";
 import Bodypart from "./components/Bodypart";
 import Dep_Doctor_bodyparts from "./components/Dep_Doctor_bodyparts";
@@ -26,12 +15,32 @@ import { BeatLoader } from "react-spinners";
 import dynamic from "next/dynamic";
 import instance from "./api/api_instance";
 import FaqCom from "./components/FaqCom";
+import MedicationOutlinedIcon from '@mui/icons-material/MedicationOutlined';
+import MedicalInformationOutlinedIcon from '@mui/icons-material/MedicalInformationOutlined';
+import BiotechOutlinedIcon from '@mui/icons-material/BiotechOutlined';
+import AirlineSeatFlatAngledOutlinedIcon from '@mui/icons-material/AirlineSeatFlatAngledOutlined';
+import AccessibilityNewOutlinedIcon from '@mui/icons-material/AccessibilityNewOutlined';
+import ChildCareOutlinedIcon from '@mui/icons-material/ChildCareOutlined';
+import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
+import HealthAndSafetyOutlinedIcon from '@mui/icons-material/HealthAndSafetyOutlined';
+import VaccinesOutlinedIcon from '@mui/icons-material/VaccinesOutlined';
+import BloodtypeOutlinedIcon from '@mui/icons-material/BloodtypeOutlined';
+import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
+import MedicalServicesOutlinedIcon from '@mui/icons-material/MedicalServicesOutlined';
+
 
 function Home() {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-console.log(data,"home")
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    fetch("/services.json")
+      .then(res => res.json())
+      .then(data => setServices(data));
+  }, []);
+
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -63,182 +72,7 @@ console.log(data,"home")
     );
   }
 
-  const test = [
-    {
-      image: "/assets/testimony/test.svg",
-      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
-      btn: "Details",
-      name: "Shima Jaman",
-      age: 35,
-      qut: "/assets/testimony/qutation.svg",
-    },
-    {
-      image: "/assets/testimony/test.svg",
-      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
-      btn: "Details",
-      name: "Shima Jaman",
-      age: 35,
-      qut: "/assets/testimony/qutation.svg",
-    },
-    {
-      image: "/assets/testimony/test.svg",
-      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
-      btn: "Details",
-      name: "Shima Jaman",
-      age: 35,
-      qut: "/assets/testimony/qutation.svg",
-    },
-    {
-      image: "/assets/testimony/test.svg",
-      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
-      btn: "Details",
-      name: "Shima Jaman",
-      age: 35,
-      qut: "/assets/testimony/qutation.svg",
-    },
-    {
-      image: "/assets/testimony/test.svg",
-      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
-      btn: "Details",
-      name: "Shima Jaman",
-      age: 35,
-      qut: "/assets/testimony/qutation.svg",
-    },
-    {
-      image: "/assets/testimony/test.svg",
-      des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,but also the leap into electronic typesetting, rema......",
-      btn: "Details",
-      name: "Shima Jaman",
-      age: 35,
-      qut: "/assets/testimony/qutation.svg",
-    },
-  ];
 
-  const events = [
-    {
-      title:
-        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
-      date: "Aug-10-2024",
-      image: "/assets/article/new.jpeg",
-    },
-    {
-      title:
-        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
-      date: "Aug-10-2024",
-      image: "/assets/article/new.jpeg",
-    },
-    {
-      title:
-        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
-      date: "Aug-10-2024",
-      image: "/assets/article/new.jpeg",
-    },
-    {
-      title:
-        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
-      date: "Aug-10-2024",
-      image: "/assets/article/new.jpeg",
-    },
-    {
-      title:
-        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
-      date: "Aug-10-2024",
-      image: "/assets/article/new.jpeg",
-    },
-    {
-      title:
-        "Free Health Camp at Allied Mother & Child Specialized Hospi tal, Keraniganj.",
-      date: "Aug-10-2024",
-      image: "/assets/article/new.jpeg",
-    },
-  ];
-
-  const serviceCard = [
-    {
-      iconItem: MedicationOutlinedIcon,
-      title: "Pharmacy Service",
-      des: "Prescription and OTC medicines provided with professional guidance.",
-      btn: "Learn More",
-      slug: "pharmacy-service",
-    },
-    {
-      iconItem: MedicalInformationOutlinedIcon,
-      title: "Medical Specialist",
-      des: "Connect with expert doctors across all major specializations.",
-      btn: "Learn More",
-      slug: "medical-specialist",
-    },
-    {
-      iconItem: BiotechOutlinedIcon,
-      title: "Diagnostic Services",
-      des: "Lab and imaging tests for accurate medical diagnosis.",
-      btn: "Learn More",
-      slug: "diagnostic-services",
-    },
-    {
-      iconItem: AirlineSeatFlatAngledOutlinedIcon,
-      title: "General Surgery",
-      des: "Expert surgical procedures with compassionate post-op care.",
-      btn: "Learn More",
-      slug: "general-surgery",
-    },
-    {
-      iconItem: AccessibilityNewOutlinedIcon,
-      title: "Orthopedic",
-      des: "Bone and joint care including sports injuries and arthritis.",
-      btn: "Learn More",
-      slug: "orthopedic",
-    },
-    {
-      iconItem: ChildCareOutlinedIcon,
-      title: "Mother and Child Care",
-      des: "Maternity, neonatal, and pediatric care under one roof.",
-      btn: "Learn More",
-      slug: "mother-child-care",
-    },
-    {
-      iconItem: LocalHospitalOutlinedIcon,
-      title: "Hospital Services",
-      des: "24/7 emergency, inpatient, and surgical hospital support.",
-      btn: "Learn More",
-      slug: "hospital-services",
-    },
-    {
-      iconItem: HealthAndSafetyOutlinedIcon,
-      title: "Health and Safety",
-      des: "Wellness checkups and workplace safety consultations.",
-      btn: "Learn More",
-      slug: "health-safety",
-    },
-    {
-      iconItem: VaccinesOutlinedIcon,
-      title: "Vaccination",
-      des: "Routine and travel vaccines for all age groups.",
-      btn: "Learn More",
-      slug: "vaccination",
-    },
-    {
-      iconItem: BloodtypeOutlinedIcon,
-      title: "Blood Services",
-      des: "Safe blood donation, screening, and transfusion support.",
-      btn: "Learn More",
-      slug: "blood-services",
-    },
-    {
-      iconItem: PsychologyOutlinedIcon,
-      title: "Mental Health",
-      des: "Confidential therapy, counseling, and mental wellness care.",
-      btn: "Learn More",
-      slug: "mental-health",
-    },
-    {
-      iconItem: MedicalServicesOutlinedIcon,
-      title: "General Checkup",
-      des: "Routine health screening for disease prevention and wellness.",
-      btn: "Learn More",
-      slug: "general-checkup",
-    },
-  ];
   return (
     <>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
@@ -286,12 +120,12 @@ console.log(data,"home")
           image3={"/assets/about/mission.svg"}
           title3={data[3]?.data[3]?._mave?.title}
           des1={
-           data[3]?.data[3]?._mave?.description
+            data[3]?.data[3]?._mave?.description
           }
           image4={"/assets/about/vision.svg"}
           title4={data[3]?.data[4]?._mave?.title}
           des2={
-         data[3]?.data[4]?._mave?.description
+            data[3]?.data[4]?._mave?.description
 
           }
           button1={"Learn More"}
@@ -311,10 +145,10 @@ console.log(data,"home")
       >
         <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto" }}>
           <Grid container spacing={2} py={6}>
-            {serviceCard.slice(0, 8).map((item, index) => (
-              <Grid size={{ xs: 12, md: 3 }} key={index}>
-                <ServiceCards {...item} slug={item.slug} index={index} />
-              </Grid> 
+            {services?.map((item, index) => (
+              <Grid size={{ xs: 12, lg: 4,xl:3 }} key={index}>
+                <ServiceCards title={item.title} des={item.description} btn={item.button} iconItem={item.icon} slug={item.slug} index={index} />
+              </Grid>
             ))}
           </Grid>
         </Box>
@@ -393,7 +227,7 @@ console.log(data,"home")
               maxWidth: { xs: "100%", md: 854 },
             }}
           >
-          {data[4]?.data[0]?._mave?.testimonials[0]?.quote}
+            {data[4]?.data[0]?._mave?.testimonials[0]?.quote}
           </Typography>
 
           <Button
@@ -442,8 +276,8 @@ console.log(data,"home")
         </Box>
       </Box>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 4 }}>
-        <FaqCom 
-              event = {data[6]?.data} loading={loading}
+        <FaqCom
+          event={data[6]?.data} loading={loading}
         />
 
       </Box>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
-function SpecialistCard({ cardImg, title, des, dig, btn, slug, path }) {
+function SpecialistCard({ cardImg, title, des, dig, btn, slug, path, department }) {
   const router = useRouter()
   return (
     <>
@@ -11,7 +11,7 @@ function SpecialistCard({ cardImg, title, des, dig, btn, slug, path }) {
         sx={{ borderRadius: 3, width: "100%", maxWidth: 404, border: "1px solid #EAF0F5", boxShadow: '0px 2px 4px rgba(18, 165, 81, 0.05)', }}
       >
         <Stack alignItems={"center"}>
-          <img src={cardImg} width={288} />
+          <img src={cardImg} width={200} />
         </Stack>
         <Box px={3} mt={3}>
           <Typography sx={{ fontSize: 20, color: "#2A6498", fontWeight: "bold" }}>{title}</Typography>
@@ -22,32 +22,36 @@ function SpecialistCard({ cardImg, title, des, dig, btn, slug, path }) {
               {des}
             </Typography>
             <Typography sx={{ fontSize: 12, color: "#12A551" }}>
-              {dig}
+              {Array.isArray(dig) ? dig.join(", ").slice(0,19) : dig}...
             </Typography>
           </Stack>
         </Box>
 
         <Stack alignItems={"center"} py={2} spacing={2} direction={"row"} justifyContent={"center"}>
-          {path === "/specialists" ? "" : <Button
-            variant="contained"
-            size="small"
-            onClick={() => router.push("/appointment")}
-            sx={{
-              bgcolor: "#2A6498",
-              color: "white",
-              px: 3,
-              py: 0.5,
-              // "&:hover": {
-              //   bgcolor: "#12A551",
-              // },
-              maxwidth: 144,
-              borderRadius: 100,
-              textTransform: "capitalize",
-            }}
-          >
+          {router.pathname
+            === "/specialists" ? "" : <Button
+              variant="contained"
+              size="small"
+              onClick={() => router.push("/appointment")}
+              sx={{
+                bgcolor: "#2A6498",
+                color: "white",
+                px: 3,
+                py: 0.5,
+                // "&:hover": {
+                //   bgcolor: "#12A551",
+                // },
+                maxwidth: 144,
+                borderRadius: 100,
+                textTransform: "capitalize",
+              }}
+            >
             Appointment
           </Button>}
-          <Link href={`/specialists/${slug}`} passHref style={{ textDecoration: 'none' }}>
+          <Link href={{
+            pathname: `/specialists/${slug}`,
+            query: { department: department },
+          }} passHref style={{ textDecoration: 'none' }}>
             <Button
               variant="contained"
               size="small"

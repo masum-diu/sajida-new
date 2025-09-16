@@ -110,7 +110,8 @@ function about() {
     380: { slidesPerView: 1, spaceBetween: 15 },
     600: { slidesPerView: 2, spaceBetween: 20 },
     900: { slidesPerView: 3, spaceBetween: 10 },
-    1200: { slidesPerView: 5, spaceBetween: 10 },
+    1200: { slidesPerView: 3, spaceBetween: 10 },
+    1920: { slidesPerView: 4, spaceBetween: 10 },
   };
   const breakpoint = {
     0: { slidesPerView: 1, spaceBetween: 0 },
@@ -336,12 +337,12 @@ function about() {
             <Typography fontSize={36} fontWeight={700} color="#0D5EAE">
               {data[4]?.data[0]?._mave?.title}
             </Typography>
-             <Typography fontSize={28}>
+            <Typography fontSize={28}>
               {data[4]?.data[0]?._mave?.description.replace(/<[^>]+>/g, "")
                 .replace(/&amp;/g, "&")
               }
             </Typography>
-           
+
           </Stack>
           <Stack
             direction="row"
@@ -382,21 +383,22 @@ function about() {
           className="mySwiper"
         >
           {data[4]?.data[1]?._mave?.cards.map((item, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} style={{shadow:"0px 2px 4px rgba(18, 165, 81, 0.05)", padding:16, borderRadius:16, border:"1px solid #EAF0F5",height:540 }}>
               <img
                 // src={item.media_files?.file_path}
                 src={`https://sajedabackend.etherstaging.xyz/${item.media_files?.file_path}`}
                 width={"100%"}
                 onClick={() => HandleMember(item)}
-                style={{ borderRadius: 16, cursor: "pointer" }}
+                style={{ borderRadius: 16, cursor: "pointer", height: 450, objectFit: "cover", objectPosition: "top" }}
               />
               <Typography sx={{ fontSize: 20, fontWeight: 600, mt: 1 }}>
                 {item.title_en}
               </Typography>
               <Typography
                 sx={{ fontSize: 16, color: "#AAAAAA" }}
-                dangerouslySetInnerHTML={{ __html: item.description_en }}
-              />
+
+              >{item.description_en.replace(/<[^>]+>/g, "")
+                .replace(/&amp;/g, "&").replace(/&nbsp;/g, "")}</Typography>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -416,7 +418,7 @@ function about() {
             </Typography>
             <Typography fontSize={28}>
               {data[5]?.data[0]?._mave?.description.replace(/<[^>]+>/g, "")
-                .replace(/&amp;/g, "&")
+                .replace(/&amp;/g, "")
               }
             </Typography>
           </Stack>
