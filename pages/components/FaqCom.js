@@ -13,22 +13,27 @@ import {
 import { BeatLoader } from "react-spinners";
 
 function FaqCom({ event, loading }) {
+
   const faqs = [
     {
       q: "How do I make an appointment at Meddic?",
-      a: "Book online, call the front desk, or use our app. You’ll receive an SMS confirmation.",
+      a: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, omnis.",
     },
     {
-      q: "Do you have a pediatrician?",
-      a: "Yes. Pediatric services are available Sunday–Thursday, 9:00 AM – 5:00 PM.",
+      q: "When is the doctor available?",
+      a: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, omnis.",
     },
     {
-      q: "Does your place provide health insurance?",
-      a: "We work with most local insurers. Please bring your card or policy number.",
+      q: "What is the doctor’s visit fee?",
+      a: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, omnis.",
     },
     {
-      q: "What payment methods do you provide?",
-      a: "Cash, card, mobile wallet, and bank transfer are accepted.",
+      q: "How much is the cabin rent?",
+      a: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, omnis.",
+    },
+    {
+      q: "How can I get a doctor’s serial?",
+      a: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, omnis.",
     },
   ];
 

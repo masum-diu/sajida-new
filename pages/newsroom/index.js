@@ -7,7 +7,7 @@ import instance from "../api/api_instance";
 
 function newsroomPage() {
   const [data, setData] = useState([]);
-  console.log("about", data);
+  // console.log("about", data);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -18,7 +18,7 @@ function newsroomPage() {
       setData(response.data.body);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 

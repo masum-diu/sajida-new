@@ -15,26 +15,13 @@ import { BeatLoader } from "react-spinners";
 import dynamic from "next/dynamic";
 import instance from "./api/api_instance";
 import FaqCom from "./components/FaqCom";
-import MedicationOutlinedIcon from '@mui/icons-material/MedicationOutlined';
-import MedicalInformationOutlinedIcon from '@mui/icons-material/MedicalInformationOutlined';
-import BiotechOutlinedIcon from '@mui/icons-material/BiotechOutlined';
-import AirlineSeatFlatAngledOutlinedIcon from '@mui/icons-material/AirlineSeatFlatAngledOutlined';
-import AccessibilityNewOutlinedIcon from '@mui/icons-material/AccessibilityNewOutlined';
-import ChildCareOutlinedIcon from '@mui/icons-material/ChildCareOutlined';
-import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
-import HealthAndSafetyOutlinedIcon from '@mui/icons-material/HealthAndSafetyOutlined';
-import VaccinesOutlinedIcon from '@mui/icons-material/VaccinesOutlined';
-import BloodtypeOutlinedIcon from '@mui/icons-material/BloodtypeOutlined';
-import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
-import MedicalServicesOutlinedIcon from '@mui/icons-material/MedicalServicesOutlined';
-
 
 function Home() {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [services, setServices] = useState([]);
-
+ console.log(data)
   useEffect(() => {
     fetch("/services.json")
       .then(res => res.json())
@@ -48,7 +35,7 @@ function Home() {
       setData(response.data.body);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 
@@ -76,7 +63,7 @@ function Home() {
   return (
     <>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
-        <SwiperCard data={data} />
+        <SwiperCard data={data[0]?.data[0]?._mave?.cards} />
       </Box>
       <Box
         bgcolor={"#2A6498"}

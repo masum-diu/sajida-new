@@ -22,7 +22,7 @@ function about() {
   const nextRef1 = useRef(null);
 
   const [data, setData] = useState([]);
-  console.log("about", data);
+  // console.log("about", data);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -33,7 +33,7 @@ function about() {
       setData(response.data.body);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 
@@ -61,50 +61,7 @@ function about() {
     setOpen(true);
     setObject(item);
   };
-  const management = [
-    {
-      image: "/assets/about/M1img.svg",
-      name: "Farooq Sobhan",
-      deg: "Chairperson",
-      about:
-        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
-    },
-    {
-      image: "/assets/about/M2img.svg",
-      name: "Md. Abdul Karim",
-      deg: "Vice Chairperson",
-      about:
-        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
-    },
-    {
-      image: "/assets/about/M3img.svg",
-      name: "Nihad Kabir",
-      deg: "Member",
-      about:
-        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
-    },
-    {
-      image: "/assets/about/M4img.svg",
-      name: "Dr. Rumana Dowla",
-      deg: "Member",
-      about:
-        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
-    },
-    {
-      image: "/assets/about/M4img.svg",
-      name: "Dr. Rumana Dowla",
-      deg: "Member",
-      about:
-        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
-    },
-    {
-      image: "/assets/about/M4img.svg",
-      name: "Dr. Rumana Dowla",
-      deg: "Member",
-      about:
-        "As a former Foreign Secretary of Bangladesh, Mr. Farooq Sobhan has had an extensive career in the diplomatic service of Bangladesh and has served in various capacities for the Ministry of Foreign Affairs, Government of Bangladesh. He was Bangladesh’s Ambassador to the People’s Republic of China, High Commissioner to Malaysia, High Commissioner to the Republic of India and Secretary of the Foreign Ministry. He additionally served as the Executive Chairman, Bangladesh Board of Investment and Special Envoy to the Prime Minister. His experience had also helped him play a pivotal role in the establishment of the SME Foundation in Bangladesh. Mr. Sobhan is currently serving as Chairman, Board of Trustees, Centre for Corporate Social Responsibility. He co-founded the Bangladesh Enterprise Institute (BEI) in 2000 and continues to serve as its President. Mr. Sobhan attended the University of Dhaka and the University of Oxford, and in 2003, served as a visiting professor at the George Washington University. He has written extensively on international relations and Bangladesh’s foreign relations, and has been a key-note speaker in various international conferences. His entire career path demonstrated his notable presence in international panels and advisory committees. ",
-    },
-  ];
+
   const breakpoints = {
     0: { slidesPerView: 1, spaceBetween: 10 },
     380: { slidesPerView: 1, spaceBetween: 15 },

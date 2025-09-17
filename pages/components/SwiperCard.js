@@ -17,36 +17,9 @@ import {
   Button,
   Divider,
 } from "@mui/material";
-function SwiperCard({data}) {
-  console.log(data)
-  const objectData = [
-    {
-      title: "Transform Your Health",
-      highlightText: "Your Health",
-      highlightColor: "#12A551",
-      description:
-        "Explore a variety of tailored services aimed at enhancing your overall health and wellness.",
-      image: "/assets/Home/HeroImage.svg",
-      button1: "Learn More",
-      button2: "Contact Us",
-      item1: "10+ Years of Experience",
-      item2: "3,60k+ Treated by Patients",
-      item3: "100% Professional Doctor",
-    },
-    {
-      title: "Transform Your Health ",
-      highlightText: "Your Health",
-      highlightColor: "#12A551",
-      description:
-        "Explore a variety of tailored services aimed at enhancing your overall health and wellness.",
-      image: "/assets/Home/HeroImage.svg",
-      button1: "Learn More",
-      button2: "Contact Us",
-      item1: "10+ Years of Experience",
-      item2: "3,60k+ Treated by Patients",
-      item3: "100% Professional Doctor",
-    },
-  ];
+function SwiperCard({ data }) {
+  // console.log(data)
+
   return (
     <Swiper
       style={{ position: "relative" }}
@@ -59,25 +32,16 @@ function SwiperCard({data}) {
       modules={[Pagination]}
       className="mySwiper"
     >
-      {objectData.map((item, index) => {
-        const { title, highlightText, highlightColor } = item;
-        const parts = title.split(highlightText);
+      {data?.map((item, index) => {
+
         return (
           <SwiperSlide key={index}>
             <Grid container spacing={4} mt={{ md: 2 }}>
               <Grid size={{ md: 5, xs: 12 }} mt={{ md: 2 }}>
-                <Typography
-                  sx={{ fontWeight: 600, fontSize: { md: 50, xl: 60 } }}
-                >
-                  {parts[0]}
-                  <Box
-                    component="span"
-                    sx={{ color: highlightColor, fontWeight: 600 }}
-                  >
-                    {highlightText}
-                  </Box>
-                  {parts[1]}
-                </Typography>
+                <Typography dangerouslySetInnerHTML={{
+                  __html: item.description_en,
+                }} />
+
                 <Typography
                   sx={{
                     fontSize: 18,
@@ -117,7 +81,7 @@ function SwiperCard({data}) {
                       },
                     }}
                   >
-                    {item.button1}
+                    Learn More
                   </Button>
                   <Button
                     variant="outlined"
@@ -143,182 +107,102 @@ function SwiperCard({data}) {
                       },
                     }}
                   >
-                    {item.button2}
+                    Contact Us
                   </Button>
                 </Stack>
-                <Stack
-                  direction={{ md: "row", xs: "column" }}
-                  spacing={2}
-                  pt={2}
-                  sx={{ display: { xs: "none", md: "flex" } }}
-                >
-                  <Typography
-                    sx={{ fontWeight: 600, fontSize: 36, lineHeight: 1.2 }}
-                  >
-                    10+ <br />{" "}
-                    <span
-                      style={{
-                        color: "#2A6498",
-                        fontWeight: 500,
-                        fontSize: 18,
-                      }}
-                    >
-                      Years of Experience
-                    </span>
-                  </Typography>
-                  <Divider
-                    variant="middle"
-                    orientation="vertical"
-                    sx={{ height: 79, borderColor: "#C4C1C1" }}
-                  />
-                  <Typography
-                    sx={{ fontWeight: 600, fontSize: 36, lineHeight: 1.2 }}
-                  >
-                    3,60k+
-                    <br />{" "}
-                    <span
-                      style={{
-                        color: "#2A6498",
-                        fontWeight: 500,
-                        fontSize: 18,
-                      }}
-                    >
-                      Treated by Patients
-                    </span>{" "}
-                  </Typography>
-                  <Divider
-                    variant="middle"
-                    orientation="vertical"
-                    sx={{ height: 79, borderColor: "#C4C1C1" }}
-                  />
-                  <Typography
-                    sx={{ fontWeight: 600, fontSize: 36, lineHeight: 1.2 }}
-                  >
-                    100% <br />{" "}
-                    <span
-                      style={{
-                        color: "#2A6498",
-                        fontWeight: 500,
-                        fontSize: 18,
-                      }}
-                    >
-                      Professional Doctor
-                    </span>
-                  </Typography>
+                <Stack sx={{ display: { xs: "flex", md: "none" },mb:3 }}>
+                  <img src={`https://sajedabackend.etherstaging.xyz/${item.media_files?.file_path}`} alt="Hero" style={{ width: "100%" }} /></Stack>
+                <Stack  direction={{ md: "row", xs: "column" }} spacing={1} divider={
+                  <Divider orientation="vertical" flexItem sx={{ borderColor: "#ccc", }} />
+                }>
+
+                  {item.description_bn && (() => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(item.description_bn, "text/html");
+                    const ps = Array.from(doc.querySelectorAll("p"))
+                      .map(p => p.textContent.trim())
+                      .filter(Boolean);
+
+                    const stats = [];
+                    for (let i = 0; i < ps.length; i += 2) {
+                      stats.push({ value: ps[i], label: ps[i + 1] || "" });
+                    }
+
+                    return stats.map((s, i) => (<>
+                      <Stack
+                        direction={{ md: "row", xs: "column" }}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        spacing={2}
+                        
+                        sx={{ display: { xs: "flex", md: "none" } }}
+                        width={"100%"}
+                      >
+
+                        <Paper
+                          sx={{
+                            width: "100%",
+                            minHeight: 140,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+                          }}
+                        >
+                          {" "}
+                          <Typography
+                            sx={{
+                              fontWeight: 600,
+                              fontSize: 36,
+                              lineHeight: 1.2,
+                              textAlign: "center",
+                            }}
+                          >
+                            {s.value} <br />{" "}
+                            <span
+                              style={{
+                                color: "#2A6498",
+                                fontWeight: 500,
+                                fontSize: 18,
+                              }}
+                            >
+                              {s.label}
+                            </span>
+                          </Typography>
+                        </Paper>
+
+                       
+                      </Stack>
+                      <Box
+                        key={i}
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "left",
+                          textAlign: "left",
+                          display: { xs: "none", md: "flex" }
+                        }}
+                      >
+                        <Typography sx={{ fontSize: 36, fontWeight: 700 }}>{s.value}</Typography>
+
+                        <Typography sx={{
+                          fontSize: { md: 12, xl: 16 }, color: "#2A6498",
+                          fontWeight: 500,
+                        }}>{s.label}</Typography>
+                      </Box></>
+                    ));
+                  })()}
                 </Stack>
+
               </Grid>
-              <Grid size={{ md: 7, xs: 12 }}>
-                <Box sx={{ position: "relative" }}>
-                  <img src={item.image} alt="Hero" style={{ width: "100%" }} />
+              <Grid size={{ md: 7, xs: 12 }} >
+                <Box sx={{ position: "relative",display: { xs: "none", md: "flex" } }}>
+                  <img src={`https://sajedabackend.etherstaging.xyz/${item.media_files?.file_path}`} alt="Hero" style={{ width: "100%" }} />
 
                   {/* Swiper pagination will be injected automatically here and positioned correctly */}
                 </Box>
 
-                <Stack
-                  direction={{ md: "row", xs: "column" }}
-                  justifyContent={"center"}
-                  alignItems={"center"}
-                  spacing={2}
-                  py={4}
-                  sx={{ display: { xs: "flex", md: "none" } }}
-                >
-                  <Paper
-                    sx={{
-                      width: "100%",
-                      minHeight: 140,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-                    }}
-                  >
-                    {" "}
-                    <Typography
-                      sx={{
-                        fontWeight: 600,
-                        fontSize: 36,
-                        lineHeight: 1.2,
-                        textAlign: "center",
-                      }}
-                    >
-                      10+ <br />{" "}
-                      <span
-                        style={{
-                          color: "#2A6498",
-                          fontWeight: 500,
-                          fontSize: 18,
-                        }}
-                      >
-                        Years of Experience
-                      </span>
-                    </Typography>
-                  </Paper>
-
-                  <Paper
-                    sx={{
-                      width: "100%",
-                      minHeight: 140,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-                    }}
-                  >
-                    {" "}
-                    <Typography
-                      sx={{
-                        fontWeight: 600,
-                        fontSize: 36,
-                        lineHeight: 1.2,
-                        textAlign: "center",
-                      }}
-                    >
-                      3,60k+
-                      <br />{" "}
-                      <span
-                        style={{
-                          color: "#2A6498",
-                          fontWeight: 500,
-                          fontSize: 18,
-                        }}
-                      >
-                        Treated by Patients
-                      </span>{" "}
-                    </Typography>
-                  </Paper>
-
-                  <Paper
-                    sx={{
-                      width: "100%",
-                      minHeight: 140,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-                    }}
-                  >
-                    {" "}
-                    <Typography
-                      sx={{
-                        fontWeight: 600,
-                        fontSize: 36,
-                        lineHeight: 1.2,
-                        textAlign: "center",
-                      }}
-                    >
-                      100% <br />{" "}
-                      <span
-                        style={{
-                          color: "#2A6498",
-                          fontWeight: 500,
-                          fontSize: 18,
-                        }}
-                      >
-                        Professional Doctor
-                      </span>
-                    </Typography>
-                  </Paper>
-                </Stack>
+             
               </Grid>
             </Grid>
           </SwiperSlide>

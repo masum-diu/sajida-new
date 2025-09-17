@@ -21,7 +21,7 @@ import { BeatLoader } from "react-spinners";
 function servicePage() {
   const router = useRouter();
   const [data, setData] = useState([]);
-const [services, setServices] = useState([]);
+  const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -32,14 +32,14 @@ const [services, setServices] = useState([]);
       setData(response.data.body);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
- 
+
 
   useEffect(() => {
     fetch("/services.json")
@@ -68,7 +68,7 @@ const [services, setServices] = useState([]);
     <>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
         <Stack justifyContent={"center"} alignItems={"center"}>
-          <Typography sx={{ fontSize: {md:60,xs:40}, fontWeight: 500 }}>
+          <Typography sx={{ fontSize: { md: 60, xs: 40 }, fontWeight: 500 }}>
             Our <span style={{ color: "#12A551" }}>Services</span>
           </Typography>
           <Stack direction={"row"} spacing={1}>
@@ -105,9 +105,9 @@ const [services, setServices] = useState([]);
               </Typography>
               <Typography
                 sx={{ color: "#222222", fontSize: 28 }}
-                // dangerouslySetInnerHTML={{
-                //   __html: data[1]?.data[0]?._mave?.description,
-                // }}
+              // dangerouslySetInnerHTML={{
+              //   __html: data[1]?.data[0]?._mave?.description,
+              // }}
               >{data[1]?.data[0]?._mave?.description.replace(/<[^>]+>/g, '')}</Typography>
               <Typography
                 sx={{
@@ -222,18 +222,18 @@ const [services, setServices] = useState([]);
         </Typography>
         <Typography
           sx={{ color: "#222222", fontSize: 28 }}
-          // dangerouslySetInnerHTML={{
-          //   __html: data[3]?.data[0]?._mave?.description,
-          // }}
+        // dangerouslySetInnerHTML={{
+        //   __html: data[3]?.data[0]?._mave?.description,
+        // }}
         >{data[3]?.data[0]?._mave?.description.replace(/<[^>]+>/g, '')}</Typography>
 
 
-        <Grid container spacing={3}  mt={2} mb={6}>
+        <Grid container spacing={3} mt={2} mb={6}>
           {services?.map((item, index) => (
-              <Grid size={{ xs: 12, md: 3 }} key={index}>
-                <ServiceCards title={item.title} des={item.description} btn={item.button} iconItem={item.icon} slug={item.slug} index={index} />
-              </Grid>
-            ))}
+            <Grid size={{ xs: 12, lg: 4, xl: 3 }} key={index}>
+              <ServiceCards title={item.title} des={item.description} btn={item.button} iconItem={item.icon} slug={item.slug} index={index} />
+            </Grid>
+          ))}
         </Grid>
       </Box>
     </>

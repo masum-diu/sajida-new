@@ -9,7 +9,7 @@ import SpecialistCard from "./SpecialistCard";
 function Dep_Doctor_bodyparts() {
   const [doctors, setDoctors] = useState([]);
   const [doctorsprofile, setDoctorsprofile] = useState([]);
-  console.log(doctorsprofile)
+  // console.log(doctorsprofile)
   const [selectedDep, setSelectedDep] = useState(null);
 
   useEffect(() => {
@@ -204,7 +204,7 @@ function Dep_Doctor_bodyparts() {
         className="mySwiper"
       >
         {doctorsprofile?.map((item, index) => {
-          console.log(item)
+          // console.log(item)
           return (
             <SwiperSlide key={index}>
               <SpecialistCard

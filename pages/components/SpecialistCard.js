@@ -8,7 +8,7 @@ function SpecialistCard({ cardImg, title, des, dig, btn, slug, path, department 
   return (
     <>
       <Paper
-        sx={{ borderRadius: 3, width: "100%", maxWidth: 404, border: "1px solid #EAF0F5", boxShadow: '0px 2px 4px rgba(18, 165, 81, 0.05)', }}
+        sx={{ borderRadius: 3, width: "100%", border: "1px solid #EAF0F5", boxShadow: '0px 2px 4px rgba(18, 165, 81, 0.05)', }}
       >
         <Stack alignItems={"center"}>
           <img src={cardImg} width={200} />
@@ -22,7 +22,7 @@ function SpecialistCard({ cardImg, title, des, dig, btn, slug, path, department 
               {des}
             </Typography>
             <Typography sx={{ fontSize: 12, color: "#12A551" }}>
-              {Array.isArray(dig) ? dig.join(", ").slice(0,19) : dig}...
+              {Array.isArray(dig) ? dig.join(", ").slice(0,15) : dig}...
             </Typography>
           </Stack>
         </Box>

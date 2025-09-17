@@ -6,18 +6,23 @@ import {
   Stack,
   IconButton,
   Avatar,
-  Button,
+  Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions,
 } from "@mui/material";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
 
 function Testimony({ event }) {
+  const [open, setOpen] = useState(false)
+  const [data, setData] = useState(null)
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-
+  const handleData = (item) => {
+    setOpen(true)
+    setData(item)
+  }
   const breakpoints = {
     0: { slidesPerView: 1, spaceBetween: 10 },
     380: { slidesPerView: 1, spaceBetween: 15 },
@@ -81,7 +86,7 @@ function Testimony({ event }) {
                 py: 4,
                 borderRadius: 4,
                 border: "1px solid #EAF0F5",
-                 height:400,
+                height: 400,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -105,10 +110,10 @@ function Testimony({ event }) {
                 }}
               >
                 {event.description_en
-                    ?.replace(/<[^>]+>/g, '')
-                    .split(/\s+/)
-                    .slice(0, 36)
-                    .join(" ") + "..."}
+                  ?.replace(/<[^>]+>/g, '')
+                  .split(/\s+/)
+                  .slice(0, 36)
+                  .join(" ") + "..."}
               </Typography>
               <Stack
                 px={2}
@@ -117,7 +122,7 @@ function Testimony({ event }) {
                 alignItems={"center"}
               >
                 <Button
-                  // onClick={() => router.push("/about")}
+                  onClick={() => handleData(event)}
                   variant="contained"
                   color="primary"
                   sx={{
@@ -162,6 +167,41 @@ function Testimony({ event }) {
           </SwiperSlide>
         ))}
       </Swiper>
+      <Dialog open={open} onClose={() => setOpen(false)} >
+        <DialogTitle >
+          <Stack alignItems={"center"}>
+            <Avatar src={`https://sajedabackend.etherstaging.xyz/${data?.media_files?.file_path}`} sx={{ width: 139, height: 139 }} />
+          </Stack>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            <Typography
+              sx={{ fontSize: 20, fontWeight: 700, color: "#2A6498" }}
+            >
+              {data?.title_en}
+            </Typography>
+            <Typography
+              sx={{
+                py: 1,
+                fontSize: 16,
+                color: "#AAAAAA",
+                textAlign: "justify",
+              }}
+            >
+              {data?.description_en?.replace(/<[^>]+>/g, '')
+              }
+            </Typography>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setOpen(false)}
+            color="primary"
+          >
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

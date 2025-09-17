@@ -4,7 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
+import { useRouter } from "next/router";
 function Articles({ event, headingSubTitle, headingTitle }) {
+  const router=useRouter()
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -61,7 +63,7 @@ function Articles({ event, headingSubTitle, headingTitle }) {
         className="mySwiper"
       >
         {event?.map((event, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index}  onClick={() => router.push(`/newsroom/12323`)} style={{cursor:"pointer"}} >
             <Paper
               sx={{
                 borderRadius: 5,

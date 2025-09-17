@@ -19,7 +19,7 @@ const FaqCom = dynamic(() => import("../pages/components/FaqCom"), {
 function contact() {
   const router = useRouter();
   const [data, setData] = useState([]);
-  console.log("about", data);
+  // console.log("about", data);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -30,7 +30,7 @@ function contact() {
       setData(response.data.body);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 

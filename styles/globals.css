@@ -84,4 +84,13 @@ body {
   .custom-dot.swiper-pagination-bullet-active {
     background-color: #12A551; /* Active color */
   }
-  
+  .topic{
+    font-size: 18px;
+    font-weight: 500;
+    color: #2A6498;
+  }
+@media screen and (min-width: 900px) and (max-width: 1500px) {
+  .topic{
+    font-size: 14px;
+  }
+}

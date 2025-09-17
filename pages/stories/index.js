@@ -18,7 +18,7 @@ import instance from "../api/api_instance";
 
 function storiesPage() {
   const [data, setData] = useState([]);
-  console.log("stories", data);
+  // console.log("stories", data);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -29,7 +29,7 @@ function storiesPage() {
       setData(response.data.body);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 

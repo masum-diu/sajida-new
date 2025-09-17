@@ -25,7 +25,7 @@ function Services() {
       setServices(data);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching services:', error);
+      // console.error('Error fetching services:', error);
     }
   };
   useEffect(() => {

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 function Bodypart() {
     const[isMobile,setIsMobile]=useState(false)
     const [bodyTitle, setBodyTitle] = useState("");
-    console.log(bodyTitle)
+    // console.log(bodyTitle)
      const MaleBodySVGReactElement = (
       <svg
         xmlns="http://www.w3.org/2000/svg"
