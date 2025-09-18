@@ -141,7 +141,7 @@ function Dep_Doctor_bodyparts() {
                 alignItems={"center"}
                 height={83}
               >
-                <img src="/assets/cadorly.svg" width={55} alt="department icon" />
+                <img src={item?.image} width={55} alt="department icon" />
                 <Typography variant="body1" >
                   {item?.department}
                 </Typography>

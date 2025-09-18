@@ -1,76 +1,125 @@
-import { Drawer, Grid, IconButton, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Drawer, Grid, IconButton, Typography } from "@mui/material";
+import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
+
 function ManagementTeam({ open, setOpen, data }) {
   return (
-    <>
-      <Drawer
-        anchor="left"
-        variant="temporary"
-        PaperProps={{
-          sx: {
-            width: "100%",
-            // maxWidth: 1400,
-            // full height
-            overflow: "hidden",
-            height: "100vh",
-            bgcolor: "#2A6498",
-          },
+    <Drawer
+      anchor="left"
+      variant="temporary"
+      PaperProps={{
+        sx: {
+          width: "100%",
+          overflow: "hidden",
+          height: "100vh", // Drawer full viewport height
+          bgcolor: "#2A6498",
+        },
+      }}
+      open={open}
+      onClose={() => setOpen(false)}
+    >
+      <Grid
+        container
+        sx={{
+          width: "100vw",
+          height: "100vh", // Grid full viewport height
+          overflow: "auto",
         }}
-        open={open}
-        onClose={() => setOpen(false)}
       >
-
-        <Stack direction={{ md: "row", xs: "column" }}  sx={{ width: "100vw", height: "100vh", overflow: "auto", }}  >
-          <Stack
-            direction={"row"}
-            justifyContent={"flex-end"}
-            alignItems={"flex-end"}
-            display={{ xs: "flex", md: "none" }}
+        {/* Image Section */}
+        <Grid
+          item
+          size={{ md: 6 }}
+          sx={{
+            position: "relative",
+            height: "100vh", // image column vh height
+          }}
+        >
+          {/* Close icon on mobile */}
+          <IconButton
+            onClick={() => setOpen(false)}
+            sx={{
+              display: { xs: "flex", md: "none" },
+              position: "absolute",
+              top: 10,
+              right: 10,
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+              color: "#000",
+              bgcolor: "#fff",
+              zIndex: 10,
+            }}
           >
-            <IconButton
-              onClick={() => setOpen(false)}
-              sx={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)", m: 2, color: "#000", bgcolor: "#fff" }}
-            >
-              <CloseIcon />
-            </IconButton>
-          </Stack>
+            <CloseIcon />
+          </IconButton>
 
-          <img src={data?.image} width={"100%"} height={"100%"} />
+          <img
+            src={`https://sajedabackend.etherstaging.xyz/${data?.media_files?.file_path}`}
+            alt={data?.title_en}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "top"
+            }}
+          />
+        </Grid>
 
-          <Stack
-            direction={"column"}  >
-            <Stack
-              direction={"row"}
-              justifyContent={"flex-end"}
-              alignItems={"flex-end"}
-              display={{ xs: "none", md: "flex" }}
-            >
-              <IconButton
-                onClick={() => setOpen(false)}
-                sx={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)", m: 2, color: "#000", bgcolor: "#fff" }}
-              >
-                <CloseIcon />
-              </IconButton>
-            </Stack>
-            <Stack
-              direction={"column"} spacing={4} mx={2.5} sx={{mt:{ xs: 3}}} >
-              
-              <Typography sx={{ fontSize: {md:100,xs:30}, fontWeight: 600, color: "#fff", }}>
-                {data?.name}
-              </Typography>
+        {/* Text Section */}
+        <Grid
+          item
+          size={{ md: 6 }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100vh", // text column vh height
+          }}
+        >
+          {/* Close icon on desktop */}
+          <IconButton
+            onClick={() => setOpen(false)}
+            sx={{
+              display: { xs: "none", md: "flex" },
+              alignSelf: "flex-end",
+              m: 2,
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+              color: "#000",
+              bgcolor: "#fff",
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
 
-              <Typography sx={{ fontSize: {md:18,xs:16}, color: "#fff", lineHeight: 2,textAlign: "justify" }}>
-                {data?.about}
-              </Typography>
-            </Stack>
-          </Stack>
-        </Stack>
+          <Typography
+            sx={{
+              fontSize: { md: 60, xs: 30 },
+              fontWeight: 600,
+              color: "#fff",
+              mx: 2.5,
+              mt: { xs: 3 },
+            }}
+          >
+            {data?.title_en}
+          </Typography>
+
+          <Typography
+            sx={{
+              fontSize: { md: 18, xs: 16 },
+              color: "#fff",
+              lineHeight: 2,
+              textAlign: "justify",
+              mx: 2.5,
+              mb: 3,
+              overflowY: "auto",
+            }}
+            dangerouslySetInnerHTML={{
+              __html: data?.description_en
+            }}
+          />
 
 
-
-      </Drawer>
-    </>
+        </Grid>
+      </Grid>
+    </Drawer>
   );
 }
 

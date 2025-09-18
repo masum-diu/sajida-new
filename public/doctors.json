@@ -1,6 +1,7 @@
 [
   {
     "department": "Gynae & OBS",
+    "image":"/assets/gynae.png",
     "doctors": [
       {
         "department": "Gynae & OBS",
@@ -162,6 +163,7 @@
   },
   {
     "department": "Pediatrics & NICU",
+     "image":"/assets/Pediatrics.png",
     "doctors": [
       {
         "department": "Pediatrics & NICU",
@@ -237,6 +239,7 @@
   },
   {
     "department": "Medicine",
+    "image":"/assets/medicine.png",
     "doctors": [
       {
         "department": "Medicine",
@@ -277,6 +280,7 @@
   },
   {
     "department": "General Surgery",
+    "image":"/assets/generalSurgery.png",
     "doctors": [
       {
         "department": "General Surgery",
@@ -320,6 +324,7 @@
   },
   {
     "department": "ENT",
+     "image":"/assets/ENT.png",
     "doctors": [
       {
         "department": "ENT",
@@ -342,6 +347,7 @@
   },
   {
     "department": "Nephrology",
+     "image":"/assets/Nephrology.png",
     "doctors": [
       {
         "department": "Nephrology",
@@ -383,6 +389,7 @@
   },
   {
     "department": "Orthopaedic",
+     "image":"/assets/Orthopedics.png",
     "doctors": [
       {
         "department": "Orthopaedic",
@@ -422,6 +429,7 @@
   },
   {
     "department": "Dermatology & Venereology",
+    "image":"/assets/Dermatology.png",
     "doctors": [
       {
         "department": "Dermatology & Venereology",
@@ -461,6 +469,7 @@
   },
   {
     "department": "Cardiology",
+    "image":"/assets/cadorly.svg",
     "doctors": [
       {
         "department": "Cardiology",
@@ -483,6 +492,7 @@
   },
   {
     "department": "Food and Nutrition",
+    "image":"/assets/food.png",
     "doctors": [
       {
         "department": "Food and Nutrition",

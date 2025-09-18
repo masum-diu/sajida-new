@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import {
   Box,
   Paper,
@@ -17,19 +17,30 @@ import {
   Button,
   Divider,
 } from "@mui/material";
+import { useRouter } from "next/router";
 function SwiperCard({ data }) {
   // console.log(data)
-
+  const router = useRouter()
   return (
     <Swiper
       style={{ position: "relative" }}
+      loop={true}
+      // slidesPerView={"auto"}
+      // spaceBetween={30}
+      // freeMode={true}
+      // allowTouchMove={true}
+      // speed={5000}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
       pagination={{
         clickable: true,
         renderBullet: function (index, className) {
           return `<span class="${className} custom-dot"></span>`;
         },
       }}
-      modules={[Pagination]}
+      modules={[Pagination, Autoplay]}
       className="mySwiper"
     >
       {data?.map((item, index) => {
@@ -57,6 +68,7 @@ function SwiperCard({ data }) {
                   <Button
                     variant="contained"
                     color="primary"
+                    onClick={() => router.push("/about")}
                     sx={{
                       width: 132,
                       height: 60,
@@ -84,6 +96,7 @@ function SwiperCard({ data }) {
                     Learn More
                   </Button>
                   <Button
+                   onClick={() => router.push("/contact")}
                     variant="outlined"
                     color="primary"
                     sx={{
@@ -110,9 +123,9 @@ function SwiperCard({ data }) {
                     Contact Us
                   </Button>
                 </Stack>
-                <Stack sx={{ display: { xs: "flex", md: "none" },mb:3 }}>
+                <Stack sx={{ display: { xs: "flex", md: "none" }, mb: 3 }}>
                   <img src={`https://sajedabackend.etherstaging.xyz/${item.media_files?.file_path}`} alt="Hero" style={{ width: "100%" }} /></Stack>
-                <Stack  direction={{ md: "row", xs: "column" }} spacing={1} divider={
+                <Stack direction={{ md: "row", xs: "column" }} spacing={1} divider={
                   <Divider orientation="vertical" flexItem sx={{ borderColor: "#ccc", }} />
                 }>
 
@@ -134,7 +147,7 @@ function SwiperCard({ data }) {
                         justifyContent={"center"}
                         alignItems={"center"}
                         spacing={2}
-                        
+
                         sx={{ display: { xs: "flex", md: "none" } }}
                         width={"100%"}
                       >
@@ -171,7 +184,7 @@ function SwiperCard({ data }) {
                           </Typography>
                         </Paper>
 
-                       
+
                       </Stack>
                       <Box
                         key={i}
@@ -196,13 +209,13 @@ function SwiperCard({ data }) {
 
               </Grid>
               <Grid size={{ md: 7, xs: 12 }} >
-                <Box sx={{ position: "relative",display: { xs: "none", md: "flex" } }}>
+                <Box sx={{ position: "relative", display: { xs: "none", md: "flex" } }}>
                   <img src={`https://sajedabackend.etherstaging.xyz/${item.media_files?.file_path}`} alt="Hero" style={{ width: "100%" }} />
 
                   {/* Swiper pagination will be injected automatically here and positioned correctly */}
                 </Box>
 
-             
+
               </Grid>
             </Grid>
           </SwiperSlide>

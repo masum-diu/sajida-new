@@ -21,7 +21,7 @@ function Home() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [services, setServices] = useState([]);
- console.log(data)
+//  console.log(data)
   useEffect(() => {
     fetch("/services.json")
       .then(res => res.json())

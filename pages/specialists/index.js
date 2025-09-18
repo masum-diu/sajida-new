@@ -2,12 +2,14 @@ import {
   Box,
   Button,
   Grid,
+  InputAdornment,
   MenuItem,
   Select,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import SpecialistCard from "../components/SpecialistCard";
@@ -69,7 +71,7 @@ function specialistsPage() {
     <>
       <Box sx={{ width: "90%", maxWidth: "1720px", margin: "0 auto", my: 2 }}>
         <Stack justifyContent={"center"} alignItems={"center"}>
-          <Typography sx={{ fontSize: {md:60,xs:40}, fontWeight: 500 }}>
+          <Typography sx={{ fontSize: { md: 60, xs: 40 }, fontWeight: 500 }}>
             Our Dedicated <span style={{ color: "#12A551" }}>Specialists</span>
           </Typography>
           <Stack direction={"row"} spacing={1}  >
@@ -138,6 +140,14 @@ function specialistsPage() {
             required
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
           />
 
           {/* <Button

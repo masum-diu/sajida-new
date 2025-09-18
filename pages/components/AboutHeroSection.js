@@ -20,6 +20,7 @@ function AboutHeroSection({
   disable,
 }) {
   const router = useRouter();
+  console.log(router)
   return (
     <Grid container spacing={8} mt={6}>
       <Grid size={{ xs: 12, md: 6 }}>
@@ -40,14 +41,14 @@ function AboutHeroSection({
       </Grid>
 
       <Grid size={{ xs: 12, md: 6 }}>
-        <Typography sx={{ fontSize: 36, fontWeight: 700, color: "#0D5EAE", pt: 4,textTransform:"capitalize" }}>
-         
+        <Typography sx={{ fontSize: 36, fontWeight: 700, color: "#0D5EAE", pt: 4, textTransform: "capitalize" }}>
+
           {title2}{" "}
-           <span style={{ color: "#12A551",textTransform:"capitalize" }} > {title1} </span>
+          <span style={{ color: "#12A551", textTransform: "capitalize" }} > {title1} </span>
         </Typography>
 
         <Typography
-         
+
           dangerouslySetInnerHTML={{ __html: subtitle1 }}
         />
 
@@ -62,7 +63,7 @@ function AboutHeroSection({
         /> */}
 
         <Stack mt={4} spacing={4} direction={{ xs: "column", md: "row" }} width={"100%"}>
-          <Stack direction={"column"} width={{lg:"50%",md:"50%",xs:"100%"}}>
+          <Stack direction={"column"} width={{ lg: "50%", md: "50%", xs: "100%" }}>
             <Stack alignItems={"center"} direction={"row"} spacing={1}>
               <img src={image3} width={67} />
               <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{title3}</Typography>
@@ -78,7 +79,7 @@ function AboutHeroSection({
           </Stack>
 
           {/* another one */}
-          <Stack direction={"column"} width={{lg:"50%",md:"50%",xs:"100%"}}>
+          <Stack direction={"column"} width={{ lg: "50%", md: "50%", xs: "100%" }}>
             <Stack alignItems={"center"} direction={"row"} spacing={2}>
               <img src={image4} width={50} />
               <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{title4}</Typography>
@@ -95,7 +96,8 @@ function AboutHeroSection({
           </Stack>
         </Stack>
 
-        {disable === "/about" ? null : (
+        {router?.pathname
+          === "/about" ? null : (
           <Button
             onClick={() => router.push("/about")}
             variant="contained"

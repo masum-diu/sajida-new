@@ -16,13 +16,13 @@ import { BeatLoader } from "react-spinners";
 function about() {
   const [open, setOpen] = useState(false);
   const [object, setObject] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(2);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const prevRef1 = useRef(null);
   const nextRef1 = useRef(null);
 
   const [data, setData] = useState([]);
-  // console.log("about", data);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -128,98 +128,40 @@ function about() {
         />
 
         <Grid container spacing={{ md: 0, xs: 2 }} mt={5}>
-          <Grid size={{ xs: 12, md: 3 }}>
+          {data[2]?.data?.map((item, index) => <Grid size={{ xs: 12, md: 3 }}>
             <Paper
+              onMouseEnter={() => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(2)}
+              key={index}
               sx={{
                 padding: 3,
                 boxShadow: "0px 2px 4px rgba(18, 165, 81, 0.05)",
-                border: "1px solid #EAF0F5",
-                borderRadius: "10px 0 0 10px",
+                borderRadius: "10px",
+                border:
+                  activeIndex === index
+                    ? "1px solid #2A6498"
+                    : "1px solid #EAF0F5",
+                backgroundColor:
+                  activeIndex === index ? "#2A6498" : "#fff",
+                color: activeIndex === index ? "#fff" : "inherit",
+                transition: "all 0.3s ease",
+                cursor: "pointer",
               }}
             >
               {/* 10+,3,60K+ */}
               <Stack alignItems={"center"} direction={"column"}>
                 <Typography fontSize={48} fontWeight={500}>
-                  {data[2]?.data[0]?._mave?.title}
+                  {item?._mave?.title}
                 </Typography>
                 <Typography
                   fontSize={16}
-                  color="#7A7A7A"
-                  dangerouslySetInnerHTML={{
-                    __html: data[2]?.data[0]?._mave?.description,
-                  }}
-                />
+
+                >{item?._mave?.description.replace(/<[^>]+>/g, '')}</Typography>
               </Stack>
             </Paper>
-          </Grid>
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Paper
-              sx={{
-                padding: 3,
-                boxShadow: "0px 2px 4px rgba(18, 165, 81, 0.05)",
-                border: "1px solid #EAF0F5",
-              }}
-            >
-              <Stack alignItems={"center"} direction={"column"}>
-                <Typography fontSize={48} fontWeight={500}>
-                  {data[2]?.data[1]?._mave?.title}
-                </Typography>
-                <Typography
-                  fontSize={16}
-                  color="#7A7A7A"
-                  dangerouslySetInnerHTML={{
-                    __html: data[2]?.data[1]?._mave?.description,
-                  }}
-                />
-              </Stack>
-            </Paper>
-          </Grid>
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Paper
-              sx={{
-                padding: 3,
-                boxShadow: "0px 2px 4px rgba(18, 165, 81, 0.05)",
-                backgroundColor: "#2A6498",
-                color: "#fff",
-                border: "1px solid #EAF0F5",
-              }}
-            >
-              <Stack alignItems={"center"} direction={"column"}>
-                <Typography fontSize={48} fontWeight={500}>
-                  {data[2]?.data[2]?._mave?.title}
-                </Typography>
-                <Typography
-                  fontSize={16}
-                  dangerouslySetInnerHTML={{
-                    __html: data[2]?.data[2]?._mave?.description,
-                  }}
-                />
-              </Stack>
-            </Paper>
-          </Grid>
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Paper
-              sx={{
-                padding: 3,
-                boxShadow: "0px 2px 4px rgba(18, 165, 81, 0.05)",
-                border: "1px solid #EAF0F5",
-                borderRadius: "0 10px 10px 0",
-              }}
-            >
-              <Stack alignItems={"center"} direction={"column"}>
-                <Typography fontSize={48} fontWeight={500}>
-                  {data[2]?.data[3]?._mave?.title}
-                </Typography>
-                <Typography
-                  fontSize={16}
-                  color="#7A7A7A"
-                  dangerouslySetInnerHTML={{
-                    __html: data[2]?.data[3]?._mave?.description,
-                  }}
-                />
-              </Stack>
-            </Paper>
-          </Grid>
+          </Grid>)}
+
+
         </Grid>
       </Box>
       <Box
@@ -340,12 +282,12 @@ function about() {
           className="mySwiper"
         >
           {data[4]?.data[1]?._mave?.cards.map((item, index) => (
-            <SwiperSlide key={index} style={{shadow:"0px 2px 4px rgba(18, 165, 81, 0.05)", padding:16, borderRadius:16, border:"1px solid #EAF0F5",height:540 }}>
+            <SwiperSlide key={index}  onClick={() => HandleMember(item)} style={{ shadow: "0px 2px 4px rgba(18, 165, 81, 0.05)", padding: 16, borderRadius: 16, border: "1px solid #EAF0F5", height: 540 }}>
               <img
                 // src={item.media_files?.file_path}
                 src={`https://sajedabackend.etherstaging.xyz/${item.media_files?.file_path}`}
                 width={"100%"}
-                onClick={() => HandleMember(item)}
+               
                 style={{ borderRadius: 16, cursor: "pointer", height: 450, objectFit: "cover", objectPosition: "top" }}
               />
               <Typography sx={{ fontSize: 20, fontWeight: 600, mt: 1 }}>

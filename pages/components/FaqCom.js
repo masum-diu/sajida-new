@@ -16,7 +16,7 @@ function FaqCom({ event, loading }) {
 
   const faqs = [
     {
-      q: "How do I make an appointment at Meddic?",
+      q: " How much is the package?",
       a: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, omnis.",
     },
     {
@@ -72,7 +72,7 @@ function FaqCom({ event, loading }) {
           <Typography sx={{ fontSize: 28 }}>
             {event[1]?._mave?.altTitle|| ""}
           </Typography>
-          <Typography
+          {/* <Typography
             sx={{
               fontSize: 16,
               color: "#AAAAAA",
@@ -83,13 +83,13 @@ function FaqCom({ event, loading }) {
             dangerouslySetInnerHTML={{
               __html: event[1]?._mave?.description || "",
             }}
-          />
+          /> */}
 
           {/* accordion */}
           <Paper
             elevation={0}
             sx={{
-              mt: 6,
+              mt: 3,
               borderRadius: 3,
 
               border: "1px solid",

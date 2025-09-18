@@ -27,10 +27,7 @@ function Footer() {
             sx={{ fontSize: 14 }}
             mt={2}
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and
+           At SAJIDA, patients experience a clean, caring, and patient-friendly clinical environment, supported by a team of expert doctors, nurses, and medical professionals who provide comprehensive services—including emergency care, surgery, diagnostics, pathology, and specialty care—all under one roof.
           </Typography>
         </Grid>
         <Grid size={{ xs: 12, md: 3 }}>
@@ -38,9 +35,9 @@ function Footer() {
             Contact
           </Typography>
           <Typography variant="body1" sx={{ fontSize: 16 }} mt={2}>
-            Mob: +88 0000 000 000<br></br>
-            Tel: 00000000<br></br>
-            P92P+HP5 Jhony Tower,<br></br>
+            Mob: +880 1777-772500<br></br>
+            {/* Tel: 00000000<br></br> */}
+            Jhony Tower,
             Chatgaon, Keraniganj<br></br>
             Highway Rd, Keraniganj<br></br>
             1310
@@ -52,16 +49,17 @@ function Footer() {
           </Typography>
 
           <Link
-            href="#"
+            href="/about"
             style={{
               textDecoration: "none",
+              listStyle:"none",
               cursor: "pointer",
               color: "black",
             }}
           >
             <li>About</li>
           </Link>
-          <Link
+          {/* <Link
             href="#"
             style={{
               textDecoration: "none",
@@ -70,11 +68,12 @@ function Footer() {
             }}
           >
             <li>Career</li>
-          </Link>
+          </Link> */}
           <Link
-            href="#"
+            href="/contact"
             style={{
               textDecoration: "none",
+               listStyle:"none",
               cursor: "pointer",
               color: "black",
             }}
@@ -82,16 +81,17 @@ function Footer() {
             <li>Contact</li>
           </Link>
           <Link
-            href="#"
+            href="/services"
             style={{
               textDecoration: "none",
+               listStyle:"none",
               cursor: "pointer",
               color: "black",
             }}
           >
             <li>Services</li>
           </Link>
-          <Link
+          {/* <Link
             href="#"
             style={{
               textDecoration: "none",
@@ -100,7 +100,7 @@ function Footer() {
             }}
           >
             <li>Department</li>
-          </Link>
+          </Link> */}
         </Grid>
         <Grid size={{ xs: 12, md: 3 }}>
           <Typography variant="h6" fontWeight={600} color="#222222">
@@ -108,26 +108,26 @@ function Footer() {
           </Typography>
           <Box sx={{ listStyle: "none" }}>
             <Link
-              href="#"
+              href="/stories"
               style={{
                 textDecoration: "none",
                 cursor: "pointer",
                 color: "black",
               }}
             >
-              <li>Documentation</li>
+              <li>Case stories</li>
             </Link>
             <Link
-              href="#"
+              href="/specialists"
               style={{
                 textDecoration: "none",
                 cursor: "pointer",
                 color: "black",
               }}
             >
-              <li>Privacy Policy</li>
+              <li>Specialists</li>
             </Link>
-            <Link
+            {/* <Link
               href="#"
               style={{
                 textDecoration: "none",
@@ -136,8 +136,8 @@ function Footer() {
               }}
             >
               <li>Press Files</li>
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               href="#"
               style={{
                 textDecoration: "none",
@@ -146,8 +146,8 @@ function Footer() {
               }}
             >
               <li>FAQs</li>
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               href="#"
               style={{
                 textDecoration: "none",
@@ -156,7 +156,7 @@ function Footer() {
               }}
             >
               <li>Contact</li>
-            </Link>
+            </Link> */}
           </Box>
         </Grid>
 
@@ -168,9 +168,9 @@ function Footer() {
             alignItems={"center"}
             justifyContent={"center"}
           >
-            <Typography fontSize={14} color="initial" textAlign={"center"}>
+            <Link  href="https://www.sajida.org/" target="_blank" style={{textDecoration:"none"}}  rel="noopener noreferrer"><Typography fontSize={14}  color="#2A6498" textAlign={"center"}>
               Visit Sajida Foundation Website
-            </Typography>
+            </Typography></Link>
             <img src="/assets/images/Logo 1.svg" alt="" width={142} />
           </Stack>
         </Grid>

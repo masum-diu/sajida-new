@@ -7,7 +7,8 @@
     "serviceOverview": "AC Ambulance with free oxygen available at your emergencies 24/7.\n24 hour a day, 7 days a week within only Keraniganj area.\n4 ambulances and 7 trained drivers are always standby for emergencies.\nContact 01777-771418",
     "button": "Learn More",
     "slug": "ambulance-service",
-    "icon":"LocalHospitalOutlined"
+    "icon":"LocalHospitalOutlined",
+    "image":"/assets/ambulance.jpg"
   },
   {
     "title": "Blood Bank",
@@ -16,7 +17,8 @@
     "serviceOverview": "Availability of Blood Bank and Transfusion Services with Expert Care.\nDonors are carefully selected under consultant supervision.\nBlood grouping, crossmatching, and screening tests are completed within 1 hour 30 minutes.\nBlood is stored safely.\nUnused blood is used to help other patients.\nAccess the safest, carefully stored blood when you need it the most at Keraniganj’s first blood bank.\nRapid matching and screening within 90 minutes for urgent cases.\nOversight by experienced Transfusion Medicine consultants.\nStrict safety with temperature-controlled storage, daily checks, and full traceability.\nCustomized care with access to whole blood or red cell units.\nCommunity-supported voluntary donations; expired units never issued",
     "button": "Learn More",
     "slug": "blood-bank",
-    "icon": "BloodtypeOutlined"
+    "icon": "BloodtypeOutlined",
+    "image":"/assets/bloodbanks.jpg"
   },
   {
     "title": "Dialysis Service",
@@ -25,7 +27,8 @@
     "serviceOverview": "Advanced Kidney Care, Expert Dialysis all at an Affordable Cost.\nProvides advanced and affordable kidney care.\nEquipped with 11 hemodialysis machines and ICU beds.\nOperates in three shifts with skilled staff and two nephrologists.\nScreening tests are done every six months.\nSo far, 434 patients have benefited from the services.\nReliable, affordable hemodialysis with expert oversight and at flexible hours at your fingertips.\nSkilled doctors, nurses, and technicians oversee each session with two nephrologists supervising treatment.\nSeparate machines for hepatitis B & C and ICU beds for new/unstable patients prevent infections.\nAffordable rates, hospital fund support for the underprivileged, and free semi-annual screenings (50% covered).\nThree daily shifts (7 AM, 11 AM, 4 PM) plus emergency night dialysis.\n11 machines in operation to reduce delays in getting service",
     "button": "Learn More",
     "slug": "dialysis-service",
-    "icon": "BiotechOutlined"
+    "icon": "BiotechOutlined",
+    "image":"/assets/Dalyis-min.jpg"
   },
   {
     "title": "Neonatal Intensive Care Unit (NICU)",
@@ -34,7 +37,8 @@
     "serviceOverview": "Advanced Neonatal Care with Our Expert NICU Team.\nWeekly equipment sterilization and four‑monthly fumigation keep the environment safe for fragile newborns.\n12 NICU beds plus a 4‑bed Observation Ward enable enhanced monitoring and step‑down care before discharge.\n3 consultants, 4 medical officers, and 15 nurses provide attentive, expert care at every stage.\n5,053 newborns cared for since 2015.\nTwo consultant‑led counseling sessions offer clear medical advice and emotional support.",
     "button": "Learn More",
     "slug": "nicu",
-    "icon": "ChildCareOutlined"
+    "icon": "ChildCareOutlined",
+    "image":"/assets/nicu-min.jpg"
   },
   {
     "title": "NVD (Normal Vaginal Delivery)",
@@ -43,6 +47,7 @@
     "serviceOverview": "Safe & Skilled Normal Delivery with Our Expert Team.\nTrusted care since 2005, serving Keraniganj Upazila, now home to over one million people.\n12-member skilled team managing normal deliveries across three shifts.\n3 In-Charges, 1 Nursing Supervisor, a 24/7 Residential Surgeon, and 2 medical officers on roster.\nOver 6,700 normal deliveries successfully conducted.\nPainless delivery options available, managed by our consultant and expert team.\n24/7 patient-centered normal delivery care, including painless delivery options managed by experienced consultants.\nA 12-member team—including a resident surgeon on-site 24/7 and two medical officers—works in three shifts.\nThree in-charges and one nursing supervisor ensure protocols and safety throughout the delivery process.\nRecognized maternal and child healthcare in Keraniganj since 2005.",
     "button": "Learn More",
     "slug": "nvd-service",
-    "icon": "AccessibilityNewOutlined"
+    "icon": "AccessibilityNewOutlined",
+    "image":"/assets/NVD.jpg"
   }
 ]
