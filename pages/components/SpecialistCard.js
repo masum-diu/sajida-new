@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
-function SpecialistCard({ cardImg, title, des, dig, btn, slug, path, department }) {
+function SpecialistCard({ cardImg, title, des, dig, btn, slug, path, department, view, stop }) {
   const router = useRouter()
   return (
     <>
@@ -22,35 +22,54 @@ function SpecialistCard({ cardImg, title, des, dig, btn, slug, path, department 
               {des}
             </Typography>
             <Typography sx={{ fontSize: 12, color: "#12A551" }}>
-              {Array.isArray(dig) ? dig.join(", ").slice(0,15) : dig}...
+              {Array.isArray(dig) ? dig.join(", ").slice(0, 15) : dig}...
             </Typography>
           </Stack>
         </Box>
 
         <Stack alignItems={"center"} py={2} spacing={2} direction={"row"} justifyContent={"center"}>
-          {router.pathname
-            === "/specialists" ? "" : <Button
-              variant="contained"
-              size="small"
-              onClick={() => router.push("/appointment")}
-              sx={{
-                bgcolor: "#2A6498",
-                color: "white",
-                px: 3,
-                py: 0.5,
-                // "&:hover": {
-                //   bgcolor: "#12A551",
-                // },
-                maxwidth: 144,
-                borderRadius: 100,
-                textTransform: "capitalize",
-              }}
-            >
+          {router.pathname === "/" || stop ? <Button
+            variant="contained"
+            size="small"
+            onClick={() => { view(false); router.push("/appointment"); }}
+            sx={{
+              bgcolor: "#2A6498",
+              color: "white",
+              px: 3,
+              py: 0.5,
+              maxWidth: 144,
+              borderRadius: 100,
+              textTransform: "capitalize",
+            }}
+          >
             Appointment
-          </Button>}
+          </Button>
+            : router.pathname === "/specialists" ? (
+              ""
+            ) : (
+              <Button
+                variant="contained"
+                size="small"
+
+                onClick={() => router.push("/appointment")}
+                sx={{
+                  bgcolor: "#2A6498",
+                  color: "white",
+                  px: 3,
+                  py: 0.5,
+                  maxWidth: 144,
+                  borderRadius: 100,
+                  textTransform: "capitalize",
+                }}
+              >
+                Appointment
+              </Button>
+            )}
+
           <Link href={{
             pathname: `/specialists/${slug}`,
             query: { department: department },
+
           }} passHref style={{ textDecoration: 'none' }}>
             <Button
               variant="contained"
@@ -66,7 +85,9 @@ function SpecialistCard({ cardImg, title, des, dig, btn, slug, path, department 
                 maxwidth: 144,
                 borderRadius: 100,
                 textTransform: "capitalize",
+
               }}
+              onClick={() => view(false)}
             >
               {btn}
             </Button>

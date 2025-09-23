@@ -20,7 +20,6 @@ function AboutHeroSection({
   disable,
 }) {
   const router = useRouter();
-  console.log(router)
   return (
     <Grid container spacing={8} mt={6}>
       <Grid size={{ xs: 12, md: 6 }}>

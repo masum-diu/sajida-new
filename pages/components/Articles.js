@@ -6,7 +6,6 @@ import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
 import { useRouter } from "next/router";
 function Articles({ event, headingSubTitle, headingTitle }) {
-  console.log(event,"event")
   const router=useRouter()
   const prevRef = useRef(null);
   const nextRef = useRef(null);
